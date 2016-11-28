@@ -16,7 +16,7 @@ public abstract class  WordDataService{
 	
 	protected final static Trie WORD_TIRE;
 	protected final static BKTree<String> WORK_BK;
-	protected final static double RADIUS=4;
+	protected final static double RADIUS=3;
 	/**
 	 * The initial of dictionary
 	 */
