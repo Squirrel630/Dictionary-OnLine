@@ -20,7 +20,7 @@ public class MainFrame extends JFrame{
 	}
 	
 	private void init() {
-		this.setTitle("Squirrel Baby's Dictionary");
+		this.setTitle("Dictionary");
 		int width = MainFrameConfig.WIDTH;
 		int height = MainFrameConfig.HEIGHT;
 		
