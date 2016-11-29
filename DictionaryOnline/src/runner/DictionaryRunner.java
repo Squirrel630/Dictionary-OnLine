@@ -26,7 +26,7 @@ public class DictionaryRunner {
 		 * make it load first,
 		 * then, it will be much faster
 		 */
-		DataFactory.getDataService().readDictionary();
+	//	DataFactory.getDataService().readDictionary();
 		UIFactory.getMainFrameInstance();
 	}
 	

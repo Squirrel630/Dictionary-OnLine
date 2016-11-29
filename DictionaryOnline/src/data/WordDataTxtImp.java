@@ -21,6 +21,7 @@ public class WordDataTxtImp extends WordDataService{
 	public String description(String word){
 		return null;//WORD_TIRE.getDescription(word);
 	}
+	
 	public WordInfo query(String word) {
 		return WORD_TIRE.getQuery(word);
 	}
@@ -28,4 +29,9 @@ public class WordDataTxtImp extends WordDataService{
 	public Iterator<String> lenovo_list(String word) {
 		return WORK_BK.query(word, RADIUS).iterator();
 	}
+	
+	public WordInfo baidu_trans(String word){
+		return Baidu.baidu_word(word); 
+	};
+
 }

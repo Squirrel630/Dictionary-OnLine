@@ -44,7 +44,7 @@ public abstract class  WordDataService{
 			WORK_BK.put(word);
 			}
 	}
-	
+	public abstract WordInfo baidu_trans(String word);
 	public abstract Iterator<String> lenovo(String word);
 	public abstract Iterator<String> readDictionary();
 	public abstract Iterator<String> lenovo_list(String word);

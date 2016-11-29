@@ -40,12 +40,11 @@ public class WordInputField extends JComboBox<String>  implements KeyListener{
         }
         int   caretPosition   =   editor.getCaretPosition(); 
         String   str   =   editor.getText();
-    //    System.out.println(str);
         if   (str.length()   ==   0) 
             return; 
-       // query(str, 0);
         query(str, caretPosition);
 	}
+	
 	private void query(String filter, int loc){
 		Iterator<String> words;
 		words = DataFactory.getDataService().lenovo(filter);

@@ -20,7 +20,7 @@ public class MainFrame extends JFrame{
 	}
 	
 	private void init() {
-		this.setTitle("Squirrel Baby's Dictionary");
+		this.setTitle("Squirrel & Big Pang's Dictionary");
 		int width = MainFrameConfig.WIDTH;
 		int height = MainFrameConfig.HEIGHT;
 		
@@ -41,8 +41,10 @@ public class MainFrame extends JFrame{
 		Container container = getContentPane();
 		container.add(UIFactory.getQueryButtonInstance());
 		container.add(UIFactory.getWordContentInstance());
+		container.add(UIFactory.getWordContent_Youdao());
+		container.add(UIFactory.getWordContent_ICIBA());
 		container.add(UIFactory.getWordInputFieldInstance());
-		container.add(UIFactory.getWordListInstance());
+//		container.add(UIFactory.getWordListInstance());
 	}
 
 	

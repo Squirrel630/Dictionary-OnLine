@@ -26,7 +26,7 @@ public class WordContent extends JPanel{
 		setLayout(null);
 		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
 		img = new JLabel(new ImageIcon("translation.png"));
-		img.setBounds(0, 5, WordContentConfig.WIDTH, 50);
+		img.setBounds(0, 1, WordContentConfig.WIDTH, 50);
 		add(img);
 		translation = new WordPanel();
 		add(translation);
@@ -52,7 +52,7 @@ public class WordContent extends JPanel{
 			wordDescription = new JLabel("");
 			wordDescription.setBounds(10, 50, this.getWidth()-10, this.getHeight() - 50);
 			wordDescription.setVerticalAlignment(JLabel.TOP);
-			wordDescription.setBorder(BorderFactory.createTitledBorder("Description :"));
+			wordDescription.setBorder(BorderFactory.createTitledBorder("[ °Ù¶È´Êµä ]"));
 //			wordDescription.setBackground(Color.BLUE);
 			Font name = wordName.getFont();
 			wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
@@ -73,5 +73,5 @@ public class WordContent extends JPanel{
 		}
 		
 	}
-	
+
 }

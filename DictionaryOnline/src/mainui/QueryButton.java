@@ -33,9 +33,10 @@ public class QueryButton extends JButton implements ActionListener{
 		else {
 			String word = (String) UIFactory.getWordInputFieldInstance().getWord();
 			WordInfo queryresult;
-			queryresult=DataFactory.getDataService().query(word);
+			queryresult=DataFactory.getDataService().baidu_trans(word);
+		//	queryresult=DataFactory.getDataService().query(word);
 			if(queryresult!=null){
-			UIFactory.getWordContentInstance().updateContent(queryresult);
+				UIFactory.getWordContentInstance().updateContent(queryresult);
 			}
 			else{
 				queryresult=new WordInfo(word,"not found");
