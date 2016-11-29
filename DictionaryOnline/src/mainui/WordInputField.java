@@ -7,6 +7,8 @@ import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import config.WordFieldConfig;
 import util.DataFactory;
@@ -15,7 +17,28 @@ public class WordInputField extends JComboBox<String>  implements KeyListener{
 
 	private static final long serialVersionUID = -3579632215369712581L;
 	
-	private JTextField editor = null;
+	private JTextField editor = null;	
+	
+	private DocumentListener inputListener = new DocumentListener() {
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			query(editor.getText(), editor.getCaretPosition());
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			query(editor.getText(), editor.getCaretPosition());
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			query(editor.getText(), editor.getCaretPosition());
+		}
+    };
 
 	public WordInputField() {
 		setBounds(WordFieldConfig.LOC_X, WordFieldConfig.LOC_Y, WordFieldConfig.WIDTH, WordFieldConfig.HEIGHT);
@@ -23,7 +46,8 @@ public class WordInputField extends JComboBox<String>  implements KeyListener{
 		
 		setModel(new DefaultComboBoxModel<>(new String[]{""}));
 		editor = (JTextField) getEditor().getEditorComponent();
-		editor.addKeyListener(this);
+		editor.getDocument().addDocumentListener(inputListener);
+		//editor.addKeyListener(this);
 	}
 
 	@Override
@@ -35,7 +59,7 @@ public class WordInputField extends JComboBox<String>  implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		char   ch   =   e.getKeyChar(); 
-        if   (ch   ==   KeyEvent.CHAR_UNDEFINED||Character.isISOControl(ch)||ch   ==   KeyEvent.VK_DELETE) {
+        if   (ch   ==   KeyEvent.CHAR_UNDEFINED||Character.isISOControl(ch)) {//||ch   ==   KeyEvent.VK_DELETE
         	return;
         }
         int   caretPosition   =   editor.getCaretPosition(); 
