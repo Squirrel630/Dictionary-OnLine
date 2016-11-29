@@ -23,22 +23,11 @@ public class Baidu {
         String json = api.getTransResult(query, "auto", "zh");
         System.out.println(json);
         System.out.println(parsJson(json));
-//        WordInfo trans=WordInfo(word,json);
-//		return trans;
     }
-    
-//   private static WordInfo WordInfo(String word, String json) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
    
     public static  WordInfo baidu_word(String word) {
         TransApi api = new TransApi(APP_ID, SECURITY_KEY);
-
-       // String word = "squirrel";
         String json = api.getTransResult(word, "auto", "zh");
-        System.out.println(json);
-        System.out.println(parsJson(json));
         String translation=parsJson(json);
         WordInfo result=new WordInfo(word, translation);
         return result;

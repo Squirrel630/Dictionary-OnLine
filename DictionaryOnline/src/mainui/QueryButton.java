@@ -32,15 +32,20 @@ public class QueryButton extends JButton implements ActionListener{
 		} 
 		else {
 			String word = (String) UIFactory.getWordInputFieldInstance().getWord();
-			WordInfo queryresult;
-			queryresult=DataFactory.getDataService().baidu_trans(word);
-		//	queryresult=DataFactory.getDataService().query(word);
-			if(queryresult!=null){
-				UIFactory.getWordContentInstance().updateContent(queryresult);
+			WordInfo baidu_result;
+			WordInfo youdao_result;
+			WordInfo ICIBA_result;
+			baidu_result=DataFactory.getDataService().baidu_trans(word);
+			youdao_result=DataFactory.getDataService().youdao_trans(word);
+			ICIBA_result=DataFactory.getDataService().ICIBA_trans(word);
+			if(baidu_result!=null){
+				UIFactory.getWordContentInstance().updateContent(baidu_result);
+				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
+				UIFactory.getWordContent_ICIBA().updateContent(ICIBA_result);
 			}
 			else{
-				queryresult=new WordInfo(word,"not found");
-				UIFactory.getWordContentInstance().updateContent(queryresult);
+				baidu_result=new WordInfo(word,"not found");
+				UIFactory.getWordContentInstance().updateContent(baidu_result);
 			}
 			UIFactory.getWordListInstance().reDictionary(word);;
 		//	int location = 5;

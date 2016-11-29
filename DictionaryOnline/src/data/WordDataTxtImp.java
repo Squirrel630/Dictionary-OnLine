@@ -33,5 +33,11 @@ public class WordDataTxtImp extends WordDataService{
 	public WordInfo baidu_trans(String word){
 		return Baidu.baidu_word(word); 
 	};
+	public WordInfo youdao_trans(String word){
+		return Baidu.baidu_word(word); 
+	};
+	public WordInfo ICIBA_trans(String word){
+		return Baidu.baidu_word(word); 
+	};
 
 }
