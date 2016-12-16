@@ -41,34 +41,34 @@ public class WordContent_ICIBA extends JPanel{
 		
 		private static final long serialVersionUID = -7982365518141482173L;
 		
-		private JLabel wordName;
+		//private JLabel wordName;
 		private JLabel wordDescription;
 		
 		public WordPanel() {
-			setBounds(0, 40, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 40);
+			setBounds(0, 0, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 40);
 			setLayout(null);
 		//	wordName = new JLabel("");
 	//		wordName.setBounds(20, 0, this.getWidth()-40, 50);
 			wordDescription = new JLabel("");
-			wordDescription.setBounds(10, 50, this.getWidth()-10, this.getHeight() - 50);
+			wordDescription.setBounds(10, 50, this.getWidth()-10, this.getHeight() -50);
 			wordDescription.setVerticalAlignment(JLabel.TOP);
 			wordDescription.setBorder(BorderFactory.createTitledBorder("[ ½ðÉ½´Ê°Ô ]"));
 //			wordDescription.setBackground(Color.BLUE);
 		//	Font name = wordName.getFont();
 	//		wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
-			wordDescription.setForeground(Color.orange);
+			wordDescription.setForeground(Color.blue);
 		//	add(wordName);
 			add(wordDescription);
 		}
 		
-		private void updateContent(WordInfo te) {
+	//	private void updateContent(WordInfo te) {
 			// TODO Auto-generated method stub
 		//	wordName=te.getWord();
 		//	wordDescription=te.getDescrption();
-		}
+//		}
 
 		public void updateContent(String name, String description) {
-			wordName.setText(name);
+		//	wordName.setText(name);
 			wordDescription.setText(description);
 		}
 		

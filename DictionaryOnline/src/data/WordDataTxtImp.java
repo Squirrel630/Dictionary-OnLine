@@ -5,6 +5,9 @@ import java.util.Iterator;
 
 import dataservice.WordDataService;
 import po.WordInfo;
+import web.Search_Baidu;
+import web.Search_Bing;
+import web.Search_Youdao;
 
 public class WordDataTxtImp extends WordDataService{
 	
@@ -31,13 +34,13 @@ public class WordDataTxtImp extends WordDataService{
 	}
 	
 	public WordInfo baidu_trans(String word){
-		return Baidu.baidu_word(word); 
+		return Search_Baidu.lookUp(word); 
 	};
 	public WordInfo youdao_trans(String word){
-		return Baidu.baidu_word(word); 
+		return Search_Youdao.lookUp(word); 
 	};
 	public WordInfo ICIBA_trans(String word){
-		return Baidu.baidu_word(word); 
+		return Search_Bing.lookUp(word); 
 	};
 
 }

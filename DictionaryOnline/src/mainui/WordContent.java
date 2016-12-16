@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -25,15 +24,13 @@ public class WordContent extends JPanel{
 	public WordContent() {
 		setLayout(null);
 		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
-	//	img = new JLabel(new ImageIcon("translation.png"));
-	//	img.setBounds(0, 1, WordContentConfig.WIDTH, 50);
-	//	add(img);
 		translation = new WordPanel();
 		add(translation);
 	}
 	
 	public void updateContent(WordInfo info) {
 		this.translation.updateContent(info.getWord(), info.getDescrption());
+//		this.translation.updateContent(info.getWord(), "aaa\r\nbbb");
 		repaint();
 	}
 	
@@ -52,11 +49,11 @@ public class WordContent extends JPanel{
 			wordDescription = new JLabel("");
 			wordDescription.setBounds(10, 50, this.getWidth()-10, this.getHeight() - 50);
 			wordDescription.setVerticalAlignment(JLabel.TOP);
-			wordDescription.setBorder(BorderFactory.createTitledBorder("[ �ٶȴʵ� ]"));
-//			wordDescription.setBackground(Color.BLUE);
+			wordDescription.setBorder(BorderFactory.createTitledBorder("[ 百度词典 ]"));
+			wordDescription.setBackground(Color.BLUE);
 			Font name = wordName.getFont();
 			wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
-			wordDescription.setForeground(Color.orange);
+			wordDescription.setForeground(Color.blue);
 			add(wordName);
 			add(wordDescription);
 		}
@@ -69,6 +66,9 @@ public class WordContent extends JPanel{
 
 		public void updateContent(String name, String description) {
 			wordName.setText(name);
+		//	wordDescription.setText("aaa\r\nbbb");
+		//	wordDescription(true);// 太长时，使允许自动换行
+	//		wordDescription.setText("abc\r\nefg");// 手动添加一个换行符“\r\n”
 			wordDescription.setText(description);
 		}
 		

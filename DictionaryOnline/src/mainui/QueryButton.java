@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import message.WordSearchMessage;
 import config.QueryButtonConfig;
 import po.WordInfo;
 import util.DataFactory;
@@ -32,12 +33,19 @@ public class QueryButton extends JButton implements ActionListener{
 		} 
 		else {
 			String word = (String) UIFactory.getWordInputFieldInstance().getWord();
+		
+//			WordSearchMessage wsm=new WordSearchMessage(word); //选择的翻译选项
+//			wsm.setBaidu(jcbBaidu.isSelected());
+//			wsm.setBing(jcbBing.isSelected());
+//			wsm.setYoudao(jcbYoudao.isSelected());
+			
 			WordInfo baidu_result;
 			WordInfo youdao_result;
 			WordInfo ICIBA_result;
 			baidu_result=DataFactory.getDataService().baidu_trans(word);
 			youdao_result=DataFactory.getDataService().youdao_trans(word);
 			ICIBA_result=DataFactory.getDataService().ICIBA_trans(word);
+			
 			if(baidu_result!=null){
 				UIFactory.getWordContentInstance().updateContent(baidu_result);
 				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
@@ -46,6 +54,8 @@ public class QueryButton extends JButton implements ActionListener{
 			else{
 				baidu_result=new WordInfo(word,"not found");
 				UIFactory.getWordContentInstance().updateContent(baidu_result);
+				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
+				UIFactory.getWordContent_ICIBA().updateContent(ICIBA_result);
 			}
 			UIFactory.getWordListInstance().reDictionary(word);;
 		//	int location = 5;
