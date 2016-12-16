@@ -46,8 +46,8 @@ public class WordInputField extends JComboBox<String>  implements KeyListener{
 		
 		setModel(new DefaultComboBoxModel<>(new String[]{""}));
 		editor = (JTextField) getEditor().getEditorComponent();
-		editor.getDocument().addDocumentListener(inputListener);
-		//editor.addKeyListener(this);
+		//editor.getDocument().addDocumentListener(inputListener);
+		editor.addKeyListener(this);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class WordInputField extends JComboBox<String>  implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		char   ch   =   e.getKeyChar(); 
-        if   (ch   ==   KeyEvent.CHAR_UNDEFINED||Character.isISOControl(ch)) {//||ch   ==   KeyEvent.VK_DELETE
+        if   (ch   ==   KeyEvent.CHAR_UNDEFINED||Character.isISOControl(ch)||ch   ==   KeyEvent.VK_DELETE) {//
         	return;
         }
         int   caretPosition   =   editor.getCaretPosition(); 

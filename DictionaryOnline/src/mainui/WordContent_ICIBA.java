@@ -47,17 +47,17 @@ public class WordContent_ICIBA extends JPanel{
 		public WordPanel() {
 			setBounds(0, 40, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 40);
 			setLayout(null);
-			wordName = new JLabel("");
-			wordName.setBounds(20, 0, this.getWidth()-40, 50);
+		//	wordName = new JLabel("");
+	//		wordName.setBounds(20, 0, this.getWidth()-40, 50);
 			wordDescription = new JLabel("");
 			wordDescription.setBounds(10, 50, this.getWidth()-10, this.getHeight() - 50);
 			wordDescription.setVerticalAlignment(JLabel.TOP);
 			wordDescription.setBorder(BorderFactory.createTitledBorder("[ ½ðÉ½´Ê°Ô ]"));
 //			wordDescription.setBackground(Color.BLUE);
-			Font name = wordName.getFont();
-			wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
+		//	Font name = wordName.getFont();
+	//		wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
 			wordDescription.setForeground(Color.orange);
-			add(wordName);
+		//	add(wordName);
 			add(wordDescription);
 		}
 		

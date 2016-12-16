@@ -44,6 +44,13 @@ public class MainFrame extends JFrame{
 		container.add(UIFactory.getWordContent_Youdao());
 		container.add(UIFactory.getWordContent_ICIBA());
 		container.add(UIFactory.getWordInputFieldInstance());
+		container.add(UIFactory.getIcon_Baidu());
+		container.add(UIFactory.getIcon_Youdao());
+		container.add(UIFactory.getIcon_ICIBA());
+		container.add(UIFactory.getIcon_Like_Baidu());
+		container.add(UIFactory.getIcon_Like_Youdao());
+		container.add(UIFactory.getIcon_Like_ICIBA());
+		container.add(UIFactory.getIcon_Search());
 //		container.add(UIFactory.getWordListInstance());
 	}
 

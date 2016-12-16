@@ -1,12 +1,11 @@
 package config;
 
-
+//∑≠“Îœ‘ æøÚŒª÷√
 public class WordContentConfig {
-	public final static int LOC_X = 20;
-	public final static int LOC_Y = 80;
+	public final static int LOC_X = 235;
+	public final static int LOC_Y = 130;
 	public final static int WIDTH = 525;	
-	public final static int HEIGHT = 200;
-	public final static int LOC_Y2 =280;
-	public final static int LOC_Y3=460;
-	
+	public final static int HEIGHT = 250;
+	public final static int LOC_Y2 =330;
+	public final static int LOC_Y3=530;
 }

@@ -1,5 +1,12 @@
 package util;
 
+import mainui.Icon_Baidu;
+import mainui.Icon_ICIBA;
+import mainui.Icon_Like_Baidu;
+import mainui.Icon_Like_ICIBA;
+import mainui.Icon_Like_Youdao;
+import mainui.Icon_Search;
+import mainui.Icon_Youdao;
 import mainui.MainFrame;
 import mainui.QueryButton;
 import mainui.WordContent;
@@ -20,6 +27,14 @@ public class UIFactory {
 	private static WordContent_ICIBA wordContent_ICIBA;
 	private static WordInputField wordInputField;
 	private static WordList wordList;
+	private static Icon_Baidu icon_Baidu;
+	private static Icon_Youdao icon_Youdao;
+	private static Icon_ICIBA icon_ICIBA;
+	private static Icon_Like_Baidu like_Baidu;
+	private static Icon_Like_Youdao like_Youdao;
+	private static Icon_Like_ICIBA like_ICIBA;
+	private static Icon_Search icon_search;
+	
 	
 	public static MainFrame getMainFrameInstance() {
 		if(frame == null) {
@@ -70,6 +85,55 @@ public class UIFactory {
 			wordList = new WordList();
 		}
 		return wordList;
+	}
+	
+	public static Icon_Baidu getIcon_Baidu() {
+		if(icon_Baidu == null) {
+			icon_Baidu = new Icon_Baidu();
+		}
+		return icon_Baidu;
+	}
+	
+	public static Icon_Youdao getIcon_Youdao() {
+		if(icon_Youdao == null) {
+			icon_Youdao = new Icon_Youdao();
+		}
+		return icon_Youdao;
+	}
+	
+	public static Icon_ICIBA getIcon_ICIBA() {
+		if(icon_ICIBA == null) {
+			icon_ICIBA = new Icon_ICIBA();
+		}
+		return icon_ICIBA;
+	}
+	
+	public static Icon_Like_Baidu getIcon_Like_Baidu() {
+		if(like_Baidu == null) {
+			like_Baidu = new Icon_Like_Baidu();
+		}
+		return like_Baidu;
+	}
+	
+	public static Icon_Like_Youdao getIcon_Like_Youdao() {
+		if(like_Youdao == null) {
+			like_Youdao = new Icon_Like_Youdao();
+		}
+		return like_Youdao;
+	}
+	
+	public static Icon_Like_ICIBA getIcon_Like_ICIBA() {
+		if(like_ICIBA == null) {
+			like_ICIBA = new Icon_Like_ICIBA();
+		}
+		return like_ICIBA;
+	}
+	
+	public static Icon_Search getIcon_Search() {
+		if(icon_search == null) {
+			icon_search = new Icon_Search();
+		}
+		return icon_search;
 	}
 	
 }

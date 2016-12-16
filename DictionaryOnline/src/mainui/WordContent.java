@@ -25,9 +25,9 @@ public class WordContent extends JPanel{
 	public WordContent() {
 		setLayout(null);
 		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
-		img = new JLabel(new ImageIcon("translation.png"));
-		img.setBounds(0, 1, WordContentConfig.WIDTH, 50);
-		add(img);
+	//	img = new JLabel(new ImageIcon("translation.png"));
+	//	img.setBounds(0, 1, WordContentConfig.WIDTH, 50);
+	//	add(img);
 		translation = new WordPanel();
 		add(translation);
 	}
