@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import message.WordSearchMessage;
 import config.QueryButtonConfig;
@@ -39,6 +40,20 @@ public class QueryButton extends JButton implements ActionListener{
 //			wsm.setBing(jcbBing.isSelected());
 //			wsm.setYoudao(jcbYoudao.isSelected());
 			
+			int error_flag=0;
+			for(int i=0;i<word.length();i++){
+				char c=word.charAt(i);
+				if(!((c>='a'&&c<='z')||(c>='A'&&c<='Z'))){
+					WordInfo error_result=new WordInfo(word, "NOTICE:¡¡Input error! Please input again!");
+					UIFactory.getWordContentInstance().updateContent(error_result);
+					UIFactory.getWordContent_Youdao().updateContent(error_result);
+					UIFactory.getWordContent_ICIBA().updateContent(error_result);
+					error_flag=1;
+					return;
+				}
+			}
+			
+			if(error_flag==0){
 			WordInfo baidu_result;
 			WordInfo youdao_result;
 			WordInfo ICIBA_result;
@@ -46,17 +61,27 @@ public class QueryButton extends JButton implements ActionListener{
 			youdao_result=DataFactory.getDataService().youdao_trans(word);
 			ICIBA_result=DataFactory.getDataService().ICIBA_trans(word);
 			
-			if(baidu_result!=null){
+			if(baidu_result.getDescrption()==""){
+				baidu_result=new WordInfo(word, "NOTICE: NOT FOUND!");
+			}
+			if(youdao_result.getDescrption()==""){
+				youdao_result=new WordInfo(word, "NOTICE: NOT FOUND!");
+			}
+			if(ICIBA_result.getDescrption()==""){
+				ICIBA_result=new WordInfo(word, "NOTICE: NOT FOUND!");
+			}
+			if(baidu_result!=null&&youdao_result!=null&&ICIBA_result!=null){
 				UIFactory.getWordContentInstance().updateContent(baidu_result);
 				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
 				UIFactory.getWordContent_ICIBA().updateContent(ICIBA_result);
 			}
-			else{
-				baidu_result=new WordInfo(word,"not found");
-				UIFactory.getWordContentInstance().updateContent(baidu_result);
-				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
-				UIFactory.getWordContent_ICIBA().updateContent(ICIBA_result);
 			}
+//			else{
+//				baidu_result=new WordInfo(word,"not found");
+//				UIFactory.getWordContentInstance().updateContent(baidu_result);
+//				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
+//				UIFactory.getWordContent_ICIBA().updateContent(ICIBA_result);
+//			}
 			UIFactory.getWordListInstance().reDictionary(word);;
 		//	int location = 5;
 		//	UIFactory.getWordListInstance().receiveQueryResult(location);

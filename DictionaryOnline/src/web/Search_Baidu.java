@@ -10,8 +10,6 @@ public class Search_Baidu {
 	//public 
 	public static WordInfo lookUp(String word){
 		java.util.Scanner input = null;
-		//baidu_result
-		//WordInfo baidu_result;
 		String explanation = "";
 		try {
 			URL url = new URL("http://www.iciba.com/" + word);

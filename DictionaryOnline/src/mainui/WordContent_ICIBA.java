@@ -45,20 +45,16 @@ public class WordContent_ICIBA extends JPanel{
 		private JLabel wordDescription;
 		
 		public WordPanel() {
-			setBounds(0, 0, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 40);
+			setBounds(0, 0, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 10);
 			setLayout(null);
-		//	wordName = new JLabel("");
-	//		wordName.setBounds(20, 0, this.getWidth()-40, 50);
 			wordDescription = new JLabel("");
-			wordDescription.setBounds(10, 50, this.getWidth()-10, this.getHeight() -50);
+			wordDescription.setBounds(10, 10, this.getWidth()-10, this.getHeight() - 10);
 			wordDescription.setVerticalAlignment(JLabel.TOP);
-			wordDescription.setBorder(BorderFactory.createTitledBorder("[ 金山词霸 ]"));
-//			wordDescription.setBackground(Color.BLUE);
-		//	Font name = wordName.getFont();
-	//		wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
+			wordDescription.setBorder(BorderFactory.createTitledBorder("[ 必应词典 ]"));
+			wordDescription.setBackground(Color.BLUE);
 			wordDescription.setForeground(Color.blue);
-		//	add(wordName);
 			add(wordDescription);
+
 		}
 		
 	//	private void updateContent(WordInfo te) {
