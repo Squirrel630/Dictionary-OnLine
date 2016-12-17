@@ -1,5 +1,6 @@
 package util;
 
+import config.LoginButtonConfig;
 import mainui.Icon_Baidu;
 import mainui.Icon_ICIBA;
 import mainui.Icon_Like_Baidu;
@@ -7,6 +8,7 @@ import mainui.Icon_Like_ICIBA;
 import mainui.Icon_Like_Youdao;
 import mainui.Icon_Search;
 import mainui.Icon_Youdao;
+import mainui.LoginButton;
 import mainui.MainFrame;
 import mainui.QueryButton;
 import mainui.WordContent;
@@ -22,6 +24,7 @@ public class UIFactory {
 	
 	private static MainFrame frame;
 	private static QueryButton queryButton;
+	private static LoginButton loginButton;
 	private static WordContent wordContent;
 	private static WordContent_Youdao wordContent_Youdao;
 	private static WordContent_ICIBA wordContent_ICIBA;
@@ -48,6 +51,13 @@ public class UIFactory {
 			queryButton = new QueryButton();
 		}
 		return queryButton;
+	}
+	
+	public static LoginButton getLoginButtonInstance() {
+		if(loginButton == null) {
+			loginButton = new LoginButton();
+		}
+		return loginButton;
 	}
 	
 	public static WordContent getWordContentInstance() {

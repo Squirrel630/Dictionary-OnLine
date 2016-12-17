@@ -45,5 +45,5 @@ public class DictionaryRunner {
 	        }
 		new DictionaryRunner();
 	}
-	
+
 }

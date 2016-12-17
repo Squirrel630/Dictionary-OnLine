@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
-import message.WordSearchMessage;
 import config.QueryButtonConfig;
 import po.WordInfo;
 import util.DataFactory;

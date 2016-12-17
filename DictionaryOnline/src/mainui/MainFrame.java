@@ -40,6 +40,7 @@ public class MainFrame extends JFrame{
 	private void initComponent() {
 		Container container = getContentPane();
 		container.add(UIFactory.getQueryButtonInstance());
+		container.add(UIFactory.getLoginButtonInstance());
 		container.add(UIFactory.getWordContentInstance());
 		container.add(UIFactory.getWordContent_Youdao());
 		container.add(UIFactory.getWordContent_ICIBA());
