@@ -70,6 +70,7 @@ public class WordContent extends JPanel{
 		}
 	
 		public void updateConfig(){
+			baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
 			setBounds(0, 0, baidu_config.Content_WIDTH, baidu_config.Content_HEIGHT-10);
 			setLayout(null);
 	//		wordName = new JLabel("");

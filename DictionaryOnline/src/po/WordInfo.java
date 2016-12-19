@@ -1,6 +1,6 @@
 package po;
 
-public class WordInfo {
+public class WordInfo implements java.io.Serializable {
 	private String word;
 	private String descrption;
 	

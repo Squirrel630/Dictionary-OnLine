@@ -64,10 +64,11 @@ public abstract class  WordDataService{
 	public abstract void initLike(ChooseInfo getlike);
 	public abstract UserInfo checkuser();
 //	public abstract void choose();
-	public abstract void setBaiduVisible(int i);
+//	public abstract void setBaiduVisible(int i);
 	public abstract void addBaiduLike();
 	public abstract void addBingLike();
 	public abstract void writeToServer();
 	public abstract void addYoudaoLike();
 	public abstract void DisplayUI();
+	public abstract void shareCard();
 }

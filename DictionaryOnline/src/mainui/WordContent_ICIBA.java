@@ -55,6 +55,7 @@ public class WordContent_ICIBA extends JPanel{
 		}
 
 		public void updateConfig(){
+			Bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
 			setBounds(0, 0, Bing_config.Content_WIDTH, Bing_config.Content_HEIGHT - 10);
 			setLayout(null);
 			wordDescription = new JLabel("");

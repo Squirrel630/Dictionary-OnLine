@@ -11,7 +11,9 @@ import mainui.Icon_Search;
 import mainui.Icon_Youdao;
 import mainui.LoginButton;
 import mainui.MainFrame;
+import mainui.OnlineUserButton;
 import mainui.QueryButton;
+import mainui.ShareCardButton;
 import mainui.WordContent;
 import mainui.WordContent_ICIBA;
 import mainui.WordContent_Youdao;
@@ -39,6 +41,8 @@ public class UIFactory {
 	private static Icon_Like_ICIBA like_ICIBA;
 	private static Icon_Search icon_search;
 	private static ChooseBox chooseBox;
+	private static OnlineUserButton onlineUserButton;
+	private static ShareCardButton shareCardButton;
 	
 //	public static 
 	public static MainFrame getMainFrameInstance() {
@@ -155,4 +159,16 @@ public class UIFactory {
 		return icon_search;
 	}
 	
+	public static OnlineUserButton getOnlineUserButton() {
+		if(onlineUserButton == null) {
+			onlineUserButton = new OnlineUserButton();
+		}
+		return onlineUserButton;
+	}
+	
+	public static ShareCardButton getShareCardButton(){
+		if(shareCardButton==null)
+			shareCardButton=new ShareCardButton();
+		return shareCardButton;
+	}
 }

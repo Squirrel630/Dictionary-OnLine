@@ -58,6 +58,8 @@ public class WordContent_Youdao extends JPanel{
 		}
 		
 		public void updateConfig(){
+//			baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
+			Youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
 			setBounds(0, 0, Youdao_config.Content_WIDTH, Youdao_config.Content_HEIGHT - 10);
 			setLayout(null);
 			wordDescription = new JLabel("");

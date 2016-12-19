@@ -56,6 +56,8 @@ public class MainFrame extends JFrame{
 		container.add(UIFactory.getIcon_Like_ICIBA());
 		container.add(UIFactory.getIcon_Search());
 		container.add(UIFactory.getChooseBox());
+		container.add(UIFactory.getShareCardButton());
+		container.add(UIFactory.getOnlineUserButton());
 	}
 
 	

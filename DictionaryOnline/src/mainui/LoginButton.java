@@ -19,10 +19,10 @@ public class LoginButton extends JButton implements ActionListener{
 		addActionListener(this);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		LogIn getlogin=new LogIn();
+		
 	}
 	
 }

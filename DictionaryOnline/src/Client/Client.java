@@ -20,7 +20,7 @@ public class Client{
 	//连接到服务器
 	public void connectToServer(){
 		try{
-			socket=new Socket("TTBOP1FGBU5YBDC",123);	
+			socket=new Socket("192.168.1.101",123);	
 			inputFromServer=new DataInputStream(socket.getInputStream());	
 			outputToServer=new ObjectOutputStream(socket.getOutputStream());
 			

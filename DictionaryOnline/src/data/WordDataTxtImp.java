@@ -157,9 +157,22 @@ public class WordDataTxtImp extends WordDataService{
 		}
 	};
 
-	@Override
-	public void setBaiduVisible(int i) {
-		// TODO 自动生成的方法存根
-		
-	}
+//	@Override
+//	public void setBaiduVisible(int i) {
+//		// TODO 自动生成的方法存根
+//		
+//	}
+	
+	public  void shareCard(){
+		//WordInfo
+		if(choose.getBaidu()){
+			//发送baidu_trans
+		}
+		if(choose.getYoudao()){
+			
+		}
+		if (choose.getBing()) {
+			
+		}
+	};
 }
