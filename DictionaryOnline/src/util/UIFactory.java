@@ -1,6 +1,7 @@
 package util;
 
 import config.LoginButtonConfig;
+import mainui.ChooseBox;
 import mainui.Icon_Baidu;
 import mainui.Icon_ICIBA;
 import mainui.Icon_Like_Baidu;
@@ -37,6 +38,9 @@ public class UIFactory {
 	private static Icon_Like_Youdao like_Youdao;
 	private static Icon_Like_ICIBA like_ICIBA;
 	private static Icon_Search icon_search;
+	private static ChooseBox chooseBox;
+	
+//	public static 
 	
 	
 	public static MainFrame getMainFrameInstance() {
@@ -51,6 +55,13 @@ public class UIFactory {
 			queryButton = new QueryButton();
 		}
 		return queryButton;
+	}
+	
+	public static ChooseBox getChooseBox() {
+		if(chooseBox == null) {
+			chooseBox = new ChooseBox();
+		}
+		return chooseBox;
 	}
 	
 	public static LoginButton getLoginButtonInstance() {

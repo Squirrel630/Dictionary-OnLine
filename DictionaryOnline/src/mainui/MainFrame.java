@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import config.MainFrameConfig;
+import po.ChooseInfo;
 import util.UIFactory;
 /**
  * A Controller
@@ -18,6 +19,8 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 		init();
 	}
+	
+	public static ChooseInfo chooseInfo;
 	
 	private void init() {
 		this.setTitle("Squirrel & Big Pang's Dictionary");
@@ -52,6 +55,7 @@ public class MainFrame extends JFrame{
 		container.add(UIFactory.getIcon_Like_Youdao());
 		container.add(UIFactory.getIcon_Like_ICIBA());
 		container.add(UIFactory.getIcon_Search());
+		container.add(UIFactory.getChooseBox());
 //		container.add(UIFactory.getWordListInstance());
 	}
 

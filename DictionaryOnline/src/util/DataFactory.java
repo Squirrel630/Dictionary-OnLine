@@ -13,6 +13,9 @@ public class DataFactory {
 		switch (dealType) {
 		case "txt":
 			return new WordDataTxtImp();
+//			break;
+//		case "client":
+//			return new ClientDataTxtImp();break
 		default:
 			break;
 		}

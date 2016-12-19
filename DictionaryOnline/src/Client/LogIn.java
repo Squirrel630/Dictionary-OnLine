@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -52,13 +53,9 @@ public class LogIn extends JFrame{
 
     
 	private Client client; //需要获得客户端主界面引用
-	private Socket socket; 
-	private ObjectOutputStream objtoServer=null;
-	private ObjectInputStream objfromServer=null;
 	
     public LogIn(){
     	LogInUI();
-    	client=new Client();
     }
     
     public void LogInUI(){
@@ -102,85 +99,42 @@ public class LogIn extends JFrame{
         signup.addActionListener(new ButtonListener());
         modify.addActionListener(new ButtonListener());
     }
-//
-//    private void initialzeDB(){
-//        try{
-//            Class.forName("com.mysql.jdbc.Driver");
-//            System.out.println("Driver loaded.");
-//
-//            Connection connection=DriverManager.getConnection("jdbc:mysql://localhost/dictionary","squirrel&panda","123456");
-//            System.out.println("database connected");
-//
-//            statement = connection.createStatement();
-//        } catch (Exception e1) {
-//            e1.printStackTrace();
-//        }
-//    }
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
         	String name=username.getText();
-        	String psd=password.getPassword().toString();
+        	String psd=password.getText();
         	userInfo=new UserInfo(name, psd);
-            // = username.getText();
-        //      = password.getText();
-//            String queryString;
-//            java.sql.ResultSet resultSet;
+        	client=new Client();
             if (e.getSource() == login) {
-//                queryString = "select * from Users";
-            	userInfo.setClientFlag(1);;
-            	try {
-					objtoServer.writeObject(userInfo);
-				} catch (IOException e1) {
-					// TODO 自动生成的 catch 块
-					e1.printStackTrace();
-				}
-				try {
-					objtoServer.flush();
-				} catch (IOException e1) {
-					// TODO 自动生成的 catch 块
-					e1.printStackTrace();
-				}
-				try {
-					int alm=(int)objfromServer.readObject();
-					System.out.println(alm);
-				} catch (ClassNotFoundException e1) {
-					// TODO 自动生成的 catch 块
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO 自动生成的 catch 块
-					e1.printStackTrace();
-				}
+              try {
+            	userInfo.setClientFlag(1);
+                client.getOutputToServer().writeObject(userInfo);
+                boolean a = client.getInputFromServer().readBoolean();
+
+                System.out.println(a);
+              }catch (IOException ex){
+                System.err.println(ex);
+              }
             } else if (e.getSource() == signup) {
             	userInfo.setClientFlag(2);
-//                if(name.equals("")){
-//                    JOptionPane.showMessageDialog(null, "The user name can not be empty!");
-//                    return;
-//                }
-//                else if(mima.equals("")){
-//                    JOptionPane.showMessageDialog(null, "The password can not be empty!");
-//                    return;
-//                }
-//                queryString = "select * from Users";
-//                try {
-//                    resultSet = statement.executeQuery(queryString);
-//                    while (resultSet.next()) {
-//                        if (resultSet.getString(1).equals(name)) {
-//                            JOptionPane.showMessageDialog(null, "The user already exists!");
-//                            return;
-//                        }
-//                    }
-//                    queryString = "insert into Users (Username,Passwords) " +
-//                            "values  ('" + name + "','" + mima + "');";
-//                    try {
-//                        statement.execute(queryString);
-//                        JOptionPane.showMessageDialog(null, "You have registered successfully!");
-//                    } catch (SQLException e1) {
-//                        e1.printStackTrace();
-//                    }
-//                } catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
+                if(name.equals("")){
+                    JOptionPane.showMessageDialog(null, "The user name can not be empty!");
+                    return;
+                }
+                else if(psd.equals("")){
+                    JOptionPane.showMessageDialog(null, "The password can not be empty!");
+                    return;
+                }
+                try {
+                	userInfo.setClientFlag(2);
+                    client.getOutputToServer().writeObject(userInfo);
+                    boolean a = client.getInputFromServer().readBoolean();
+
+                    System.out.println(a);
+                 }catch (IOException ex){
+                    System.err.println(ex);
+                 }
             }
             else if(e.getSource() == modify){
             	userInfo.setClientFlag(3);
@@ -253,5 +207,4 @@ public class LogIn extends JFrame{
 //        new LogIn();
 //    }
 }
-
 

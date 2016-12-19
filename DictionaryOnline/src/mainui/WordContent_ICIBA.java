@@ -15,19 +15,12 @@ import po.WordInfo;
  * 		To show the information of word
  */
 public class WordContent_ICIBA extends JPanel{
-	
 	private static final long serialVersionUID = -3000677005620925673L;
-	
 	private WordPanel translation;
-	
 	private JLabel img;
-	
 	public WordContent_ICIBA() {
 		setLayout(null);
 		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y3, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
-//		img = new JLabel(new ImageIcon("translation.png"));
-//		img.setBounds(0, 1, WordContentConfig.WIDTH, 50);
-//		add(img);
 		translation = new WordPanel();
 		add(translation);
 	}
@@ -40,8 +33,6 @@ public class WordContent_ICIBA extends JPanel{
 	private class WordPanel extends JPanel{
 		
 		private static final long serialVersionUID = -7982365518141482173L;
-		
-		//private JLabel wordName;
 		private JLabel wordDescription;
 		
 		public WordPanel() {
@@ -56,15 +47,8 @@ public class WordContent_ICIBA extends JPanel{
 			add(wordDescription);
 
 		}
-		
-	//	private void updateContent(WordInfo te) {
-			// TODO Auto-generated method stub
-		//	wordName=te.getWord();
-		//	wordDescription=te.getDescrption();
-//		}
 
 		public void updateContent(String name, String description) {
-		//	wordName.setText(name);
 			wordDescription.setText(description);
 		}
 		

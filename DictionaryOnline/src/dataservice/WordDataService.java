@@ -5,10 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import Client.LogIn;
 import data.BKTree;
 import data.LevensteinDistance;
 import data.MetricSpace;
 import data.Trie;
+import mainui.ChooseBox;
+import po.ChooseInfo;
+import po.UserInfo;
 import po.WordInfo;
 
 
@@ -17,6 +21,8 @@ public abstract class  WordDataService{
 	protected final static Trie WORD_TIRE;
 	protected final static BKTree<String> WORK_BK;
 	protected final static double RADIUS=3;
+//	protected final static 
+	public static ChooseInfo choose=new ChooseInfo();
 	/**
 	 * The initial of dictionary
 	 */
@@ -52,4 +58,13 @@ public abstract class  WordDataService{
 	public abstract Iterator<String> lenovo_list(String word);
 	public abstract WordInfo query(String word);
 	public abstract String description(String word);
+	
+	public abstract void initLike(ChooseInfo getlike);
+	public abstract UserInfo checkuser();
+//	public abstract void choose();
+	public abstract void setBaiduVisible(int i);
+	public abstract void addBaiduLike();
+	public abstract void addBingLike();
+	public abstract void addYoudaoLike();
+	public abstract void DisplayUI();
 }

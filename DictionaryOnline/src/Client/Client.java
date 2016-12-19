@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.io.*;
 
 public class Client{
 	Socket socket=null;
-	private ObjectOutputStream objtoServer=null;
-	private ObjectInputStream objfromServer=null;
+	private static DataInputStream inputFromServer;
+    private  static ObjectOutputStream outputToServer;
 	
 	
 	public Client() {
@@ -19,9 +20,9 @@ public class Client{
 	//连接到服务器
 	public void connectToServer(){
 		try{
-			socket=new Socket("localhost",8000);	
-			objfromServer=new ObjectInputStream(socket.getInputStream());	
-			objtoServer=new ObjectOutputStream(socket.getOutputStream());
+			socket=new Socket("TTBOP1FGBU5YBDC",123);	
+			inputFromServer=new DataInputStream(socket.getInputStream());	
+			outputToServer=new ObjectOutputStream(socket.getOutputStream());
 			
 		}
 		catch(IOException ex){
@@ -30,5 +31,14 @@ public class Client{
 	}
 	
 
+	public DataInputStream getInputFromServer(){
+		return inputFromServer;
+	}
 	
+	public ObjectOutputStream getOutputToServer(){
+		return outputToServer;
+	}
+	public Socket getSocket(){
+		return socket;
+	}
 }
