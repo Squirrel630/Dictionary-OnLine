@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import Client.Client;
 import Client.LogIn;
 import data.BKTree;
 import data.LevensteinDistance;
@@ -23,6 +24,7 @@ public abstract class  WordDataService{
 	protected final static double RADIUS=3;
 //	protected final static 
 	public static ChooseInfo choose=new ChooseInfo();
+	protected Client client;
 	/**
 	 * The initial of dictionary
 	 */
@@ -65,6 +67,7 @@ public abstract class  WordDataService{
 	public abstract void setBaiduVisible(int i);
 	public abstract void addBaiduLike();
 	public abstract void addBingLike();
+	public abstract void writeToServer();
 	public abstract void addYoudaoLike();
 	public abstract void DisplayUI();
 }

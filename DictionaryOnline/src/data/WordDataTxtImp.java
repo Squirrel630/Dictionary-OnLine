@@ -1,13 +1,11 @@
 package data;
 
-import java.lang.reflect.Array;
+import java.io.IOException;
 import java.util.Iterator;
 
-import org.jvnet.substance.utils.IconFadeStep;
-
+import Client.Client;
 import Client.LogIn;
 import dataservice.WordDataService;
-import mainui.ChooseBox;
 import po.ChooseInfo;
 import po.UserInfo;
 import po.WordInfo;
@@ -146,6 +144,18 @@ public class WordDataTxtImp extends WordDataService{
 		UIFactory.getIcon_Youdao().updateConfig();
 	}
 
+	@Override
+	public void writeToServer() {
+		// TODO 自动生成的方法存根
+        try {
+        	client = new Client();
+        	client.getOutputToServer().writeObject(choose);
+			boolean a = client.getInputFromServer().readBoolean();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	};
 
 	@Override
 	public void setBaiduVisible(int i) {

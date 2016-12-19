@@ -1,13 +1,11 @@
 package Client;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.sql.Statement;
 
 import javax.swing.JButton;
@@ -16,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import config.LogInFrameConfig;
@@ -63,7 +62,7 @@ public class LogIn extends JFrame{
         password = new JPasswordField(16);
         jLabel1 = new JLabel("用户名");
         jLabel2 = new JLabel("密    码");
-        modify = new JButton("修改密码");
+        modify = new JButton("查看用户列表");
         login = new JButton("登陆");
         signup = new JButton("注册");
         jp1 = new JPanel();
@@ -90,7 +89,7 @@ public class LogIn extends JFrame{
         //设置显示
         this.setSize(LogInFrameConfig.WIDTH, LogInFrameConfig.HEIGHT);
         //this.pack();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setTitle("登陆");
@@ -111,13 +110,15 @@ public class LogIn extends JFrame{
             	userInfo.setClientFlag(1);
                 client.getOutputToServer().writeObject(userInfo);
                 boolean a = client.getInputFromServer().readBoolean();
-
+                flag = a;
+                if(flag == true){
+                	JOptionPane.showMessageDialog(null, "登陆成功!");
+                }
                 System.out.println(a);
               }catch (IOException ex){
                 System.err.println(ex);
               }
             } else if (e.getSource() == signup) {
-            	userInfo.setClientFlag(2);
                 if(name.equals("")){
                     JOptionPane.showMessageDialog(null, "The user name can not be empty!");
                     return;
@@ -130,14 +131,24 @@ public class LogIn extends JFrame{
                 	userInfo.setClientFlag(2);
                     client.getOutputToServer().writeObject(userInfo);
                     boolean a = client.getInputFromServer().readBoolean();
-
+                    if(a == true)
+                    	JOptionPane.showMessageDialog(null, "注册成功！");
                     System.out.println(a);
                  }catch (IOException ex){
                     System.err.println(ex);
                  }
             }
-            else if(e.getSource() == modify){
-            	userInfo.setClientFlag(3);
+            else if(e.getSource() == modify && flag == true){
+            	try {
+            		userInfo.setClientFlag(3);
+            		client.getOutputToServer().writeObject(userInfo);
+					String userlist = client.getInputFromServer().readUTF();
+					System.out.println(userlist);
+					new ShowUserList(userlist);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 //                if(name.equals("")){
 //                    JOptionPane.showMessageDialog(null, "The user name can not be empty!");
 //                    return;
@@ -189,7 +200,7 @@ public class LogIn extends JFrame{
             this.add(ensureChange);
             this.setSize(400, 80);
             this.setVisible(true);
-            this.setTitle("修改密码");
+            this.setTitle("用户列表");
             this.setLocationRelativeTo(null);
             ensureChange.addActionListener(new ButtonListener());
         }
@@ -206,5 +217,54 @@ public class LogIn extends JFrame{
 //    public static void main(String[] args){
 //        new LogIn();
 //    }
+    
+    class ShowUserList extends JFrame{
+    	public JTextArea jta1,jta2;
+    	public ShowUserList(String str){
+    		jta1 = new JTextArea();
+    		jta2 = new JTextArea();
+    		JPanel p1 = new JPanel();
+    		p1.setLayout(new BorderLayout());
+    		p1.add(new JLabel("在线"),BorderLayout.NORTH);
+    		p1.add(jta1,BorderLayout.CENTER);
+    		JPanel p2 = new JPanel();
+    		p2.setLayout(new BorderLayout());
+    		p2.add(new JLabel("离线"),BorderLayout.NORTH);
+    		p2.add(jta2,BorderLayout.CENTER);
+
+    		//while(!str.equals("")){
+            	String[] tokens1;
+            	tokens1 = str.split("~",0);
+            	for(int i = 0;i<tokens1.length;i++){
+            		if(!tokens1[i].equals("")){
+            			String temp = tokens1[i];
+            			String[] tokens2 = temp.split("!",0);
+            			int j = 0;
+            			while(true){
+            				if(!tokens2[j].equals("")){
+            					jta1.append(tokens2[j]+"\n");
+            					break;
+            				}
+            			}
+            			for(j = j+1;j<tokens2.length;j++){
+            				if(!tokens2[j].equals(""))
+            					jta2.append(tokens2[j]+"\n");
+            			}
+            		}
+            	}
+            //}
+    		
+    		setLayout(new GridLayout(1,2));
+    		add(p1);
+    		add(p2);
+    		setTitle("用户列表");
+    		setSize(500,300);
+    		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setLocationRelativeTo(null);
+            this.setVisible(true);
+            
+    	}
+    }
 }
+
 

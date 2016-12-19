@@ -29,6 +29,8 @@ public class Icon_Like_Baidu  extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		DataFactory.getDataService().addBaiduLike();
+		DataFactory.getDataService().writeToServer();
+
 	}
 
 }

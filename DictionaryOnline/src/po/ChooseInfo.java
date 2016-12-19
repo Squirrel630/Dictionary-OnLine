@@ -2,7 +2,7 @@ package po;
 
 import java.util.Set;
 
-public class ChooseInfo {
+public class ChooseInfo implements java.io.Serializable{
 	
 //	private String word;//要搜索的单词
 	private boolean isBaiduChosen=true;//百度是否被选择

@@ -1,6 +1,6 @@
 package po;
 
-public class UserInfo {
+public class UserInfo implements java.io.Serializable{
 	private String username;
 	private String password;
 	private int clientflag;

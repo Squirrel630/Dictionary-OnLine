@@ -28,7 +28,8 @@ public class Icon_Like_ICIBA  extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO 自动生成的方法存根
 		DataFactory.getDataService().addBingLike();
-		
+		DataFactory.getDataService().writeToServer();
+
 	}
 	
 }

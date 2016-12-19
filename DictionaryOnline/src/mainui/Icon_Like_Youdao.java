@@ -28,7 +28,7 @@ public class Icon_Like_Youdao extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO 自动生成的方法存根
 		DataFactory.getDataService().addYoudaoLike();
-		
+		DataFactory.getDataService().writeToServer();
 	}
 
 }
