@@ -18,7 +18,7 @@ public class ChooseBox extends JCheckBox{
 
 	public ChooseBox() {
 		// TODO 自动生成的构造函数存根
-//		setLayout(null);
+
 		setLayout(null);
 		setBounds(ChooseBoxConfig.LOC_X, ChooseBoxConfig.LOC_Y, ChooseBoxConfig.WIDTH, ChooseBoxConfig.HEIGHT);
 		jcbBaidu.setForeground(Color.DARK_GRAY);

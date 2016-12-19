@@ -6,10 +6,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import config.First_Config;
-import config.WordContentConfig;
+//import config.WordContentConfig;
 import po.ConfigInfo;
 import po.WordInfo;
+import util.DataFactory;
 /**
  * WordContent : 
  * 		To show the information of word
@@ -21,12 +21,15 @@ public class WordContent extends JPanel{
 	private WordPanel translation;
 	
 	private JLabel img;
-	public First_Config configInfo; 
+	private ConfigInfo baidu_config=new ConfigInfo();
+
 	public WordContent() {
+		baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
 		setLayout(null);
-		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
+		setBounds(baidu_config.LOC_Content_X, baidu_config.LOC_Content_Y, baidu_config.Content_WIDTH, baidu_config.Content_HEIGHT);
 		translation = new WordPanel();
 		add(translation);
+		translation.setVisible(true);
 	}
 	
 	public void updateContent(WordInfo info) {
@@ -42,7 +45,7 @@ public class WordContent extends JPanel{
 		private JLabel wordDescription;
 		
 		public WordPanel() {
-			setBounds(0, 0, WordContentConfig.WIDTH, WordContentConfig.HEIGHT-10);
+			setBounds(0, 0, baidu_config.Content_WIDTH, baidu_config.Content_HEIGHT-10);
 			setLayout(null);
 	//		wordName = new JLabel("");
 	//		wordName.setBounds(10, 0, this.getWidth()-40, 50);
@@ -57,20 +60,18 @@ public class WordContent extends JPanel{
 		//	wordName.setForeground(Color.darkGray);
 		//	add(wordName);
 			add(wordDescription);
+			//wordDescription.setVisible(true);
 		}
 
 
 		public void updateContent(String name, String description) {
-			wordName.setText(">> "+name);
+			//wordName.setText(">> "+name);
 			wordDescription.setText(description);
 		}
-		
-//		public void setVisible_Baidu(Boolean flag){
-//			if(!flag)
-//				this.setVisible(false);
-//			else 
-//				this.setVisible(true);
-//		}
+	
+		public void setConfig_Baidu(ConfigInfo baidu){
+			
+		}
 	}
 
 }

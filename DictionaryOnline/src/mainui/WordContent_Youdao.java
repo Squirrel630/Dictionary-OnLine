@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import config.WordContentConfig;
+import po.ConfigInfo;
 import po.WordInfo;
+import util.DataFactory;
 /**
  * WordContent : 
  * 		To show the information of word
@@ -21,10 +23,12 @@ public class WordContent_Youdao extends JPanel{
 	private WordPanel translation;
 	
 	private JLabel img;
-	
+	private ConfigInfo Youdao_config=new ConfigInfo();
+
 	public WordContent_Youdao() {
+		Youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
 		setLayout(null);
-		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y2, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
+		setBounds(Youdao_config.LOC_Content_X, Youdao_config.LOC_Content_Y, Youdao_config.Content_WIDTH, Youdao_config.Content_HEIGHT);
 		translation = new WordPanel();
 		add(translation);
 	}
@@ -42,7 +46,7 @@ public class WordContent_Youdao extends JPanel{
 		private JLabel wordDescription;
 		
 		public WordPanel() {
-			setBounds(0, 0, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 10);
+			setBounds(0, 0, Youdao_config.Content_WIDTH, Youdao_config.Content_HEIGHT - 10);
 			setLayout(null);
 			wordDescription = new JLabel("");
 			wordDescription.setBounds(10, 10, this.getWidth()-10, this.getHeight() - 10);

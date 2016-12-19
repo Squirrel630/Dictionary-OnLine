@@ -11,7 +11,6 @@ import org.jvnet.substance.theme.SubstanceTerracottaTheme;
 import org.jvnet.substance.title.FlatTitlePainter;
 import org.jvnet.substance.watermark.SubstanceBubblesWatermark;
 
-import util.DataFactory;
 import util.UIFactory;
 
 public class DictionaryRunner {

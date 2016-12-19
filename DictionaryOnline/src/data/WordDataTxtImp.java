@@ -3,6 +3,8 @@ package data;
 import java.lang.reflect.Array;
 import java.util.Iterator;
 
+import org.jvnet.substance.utils.IconFadeStep;
+
 import Client.LogIn;
 import dataservice.WordDataService;
 import mainui.ChooseBox;
@@ -86,10 +88,43 @@ public class WordDataTxtImp extends WordDataService{
 	
 	public void DisplayUI(){
 		//≈≈–Ú
-		if(choose.getLikeBaidu()>choose.getLikeBing()){
+		if(choose.getLikeBaidu()!=0||choose.getLikeBing()!=0||choose.getLikeYoudao()!=0){
+			if(choose.getLikeBaidu()>choose.getLikeBing()){
 			  if(choose.getLikeBaidu()>choose.getLikeYoudao()){
-				  
+				  choose.setBaidu_rank(1);
+				  if(choose.getLikeBing()>choose.getLikeYoudao()){
+					  choose.setBing_rank(2);
+					  choose.setYoudao_rank(3);
+				  }
+				  else{
+					  choose.setBing_rank(3);
+					  choose.setYoudao_rank(2);
+				  }
 			  }
+			  else {
+				  choose.setBaidu_rank(2);
+				  choose.setYoudao_rank(1);
+				  choose.setBing_rank(3);
+			  }
+		}
+		else{
+			if(choose.getLikeBaidu()>choose.getLikeYoudao()){
+				choose.setBaidu_rank(2);
+				choose.setBing_rank(1);
+				choose.setYoudao_rank(3);
+			}
+			else{
+				choose.setBing_rank(3);
+				if(choose.getLikeBing()>choose.getLikeYoudao()){
+					choose.setBing_rank(1);
+					choose.setYoudao_rank(2);
+				}
+				else{
+					choose.setBing_rank(2);
+					choose.setYoudao_rank(3);
+				}
+			}
+		}
 		}
 		
 		//…Ë÷√œ‘ æ
@@ -104,6 +139,11 @@ public class WordDataTxtImp extends WordDataService{
 		UIFactory.getWordContent_ICIBA().setVisible(choose.getBing());
 		UIFactory.getIcon_Like_ICIBA().setVisible(choose.getBing());
 		UIFactory.getIcon_ICIBA().setVisible(choose.getBing());
+		
+		System.out.println(choose.getBaidu_rank()+" "+choose.getBing_rank()+"  "+choose.getYoudao_rank());
+		UIFactory.getIcon_Baidu().updateConfig();
+		UIFactory.getIcon_ICIBA().updateConfig();
+		UIFactory.getIcon_Youdao().updateConfig();
 	}
 
 

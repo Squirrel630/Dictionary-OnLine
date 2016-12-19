@@ -7,17 +7,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import config.LikeConfig;
+import po.ConfigInfo;
 import util.DataFactory;
 
 public class Icon_Like_ICIBA  extends JButton implements ActionListener{
 	private JLabel img;
 	
+	private ConfigInfo bing_config=new ConfigInfo();
 	public Icon_Like_ICIBA() {
+		bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
 		setLayout(null);
-		setBounds(LikeConfig.LOC_X, LikeConfig.LOC_Y3, LikeConfig.WIDTH, LikeConfig.HEIGHT);
+		setBounds(bing_config.LOC_Like_X, bing_config.LOC_Like_Y, bing_config.Like_WIDTH+10, bing_config.Like_HEIGHT+10);
 		img = new JLabel(new ImageIcon("Icon_Like.png"));
-		img.setBounds(0, 0, LikeConfig.WIDTH, LikeConfig.HEIGHT);
+		img.setBounds(5, 5, bing_config.Like_WIDTH,bing_config.Like_HEIGHT);
 		add(img);
 		addActionListener(this);
 	}

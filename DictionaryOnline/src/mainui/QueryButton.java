@@ -80,7 +80,8 @@ public class QueryButton extends JButton implements ActionListener{
 //				UIFactory.getWordContent_Youdao().updateContent(youdao_result);
 //				UIFactory.getWordContent_ICIBA().updateContent(ICIBA_result);
 //			}
-			UIFactory.getWordListInstance().reDictionary(word);;
+			DataFactory.getDataService().DisplayUI();
+			UIFactory.getWordListInstance().reDictionary(word);
 		//	int location = 5;
 		//	UIFactory.getWordListInstance().receiveQueryResult(location);
 		}

@@ -41,8 +41,6 @@ public class UIFactory {
 	private static ChooseBox chooseBox;
 	
 //	public static 
-	
-	
 	public static MainFrame getMainFrameInstance() {
 		if(frame == null) {
 			frame = new MainFrame();

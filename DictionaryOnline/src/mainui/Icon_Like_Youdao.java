@@ -6,19 +6,20 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
-import config.LikeConfig;
+import po.ConfigInfo;
 import util.DataFactory;
 
 public class Icon_Like_Youdao extends JButton implements ActionListener{
 	private JLabel img;
 	
+	private ConfigInfo youdao_config=new ConfigInfo();
 	public Icon_Like_Youdao() {
+		youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
 		setLayout(null);
-		setBounds(LikeConfig.LOC_X, LikeConfig.LOC_Y2, LikeConfig.WIDTH, LikeConfig.HEIGHT);
+		setBounds(youdao_config.LOC_Like_X, youdao_config.LOC_Like_Y, youdao_config.Like_WIDTH+10, youdao_config.Like_HEIGHT+10);
 		img = new JLabel(new ImageIcon("Icon_Like.png"));
-		img.setBounds(0, 0, LikeConfig.WIDTH, LikeConfig.HEIGHT);
+		img.setBounds(5, 5, youdao_config.Like_WIDTH,youdao_config.Like_HEIGHT);
 		add(img);
 		addActionListener(this);
 	}

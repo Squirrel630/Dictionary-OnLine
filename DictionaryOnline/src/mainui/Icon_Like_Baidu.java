@@ -7,18 +7,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import config.LikeConfig;
+//import config.LikeConfig;
+import po.ConfigInfo;
 import util.DataFactory;
-import util.UIFactory;
 
 public class Icon_Like_Baidu  extends JButton implements ActionListener{
 	private JLabel img;
 	
+	private ConfigInfo baidu_config=new ConfigInfo();
 	public Icon_Like_Baidu() {
+		baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
 		setLayout(null);
-		setBounds(LikeConfig.LOC_X, LikeConfig.LOC_Y, LikeConfig.WIDTH+10, LikeConfig.HEIGHT+10);
+		setBounds(baidu_config.LOC_Like_X, baidu_config.LOC_Like_Y, baidu_config.Like_WIDTH+10, baidu_config.Like_HEIGHT+10);
 		img = new JLabel(new ImageIcon("Icon_Like.png"));
-		img.setBounds(5, 5, LikeConfig.WIDTH, LikeConfig.HEIGHT);
+		img.setBounds(5, 5, baidu_config.Like_WIDTH,baidu_config.Like_HEIGHT);
 		add(img);
 		addActionListener(this);
 		//addActionListener(this);

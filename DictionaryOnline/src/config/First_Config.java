@@ -1,8 +1,6 @@
 package config;
 
-import po.ConfigInfo;
-
-public class First_Config extends ConfigInfo{
+public class First_Config {
 	public final static int LOC_Content_X = 235;
 	public final static int LOC_Content_Y = 220;
 	public final static int Content_WIDTH = 525;	
@@ -17,10 +15,4 @@ public class First_Config extends ConfigInfo{
 	public final static int LOC_Like_Y = 260;
 	public final static int Like_WIDTH = 60;	
 	public final static int Like_HEIGHT = 60;
-	
-//	ConfigInfo configInfo;
-//	public First_Config() {
-//		// TODO 自动生成的构造函数存根
-//		configInfo.
-//	}
 }

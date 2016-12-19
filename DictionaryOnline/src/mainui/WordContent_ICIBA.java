@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import config.WordContentConfig;
+import po.ConfigInfo;
 import po.WordInfo;
+import util.DataFactory;
 /**
  * WordContent : 
  * 		To show the information of word
@@ -18,9 +20,13 @@ public class WordContent_ICIBA extends JPanel{
 	private static final long serialVersionUID = -3000677005620925673L;
 	private WordPanel translation;
 	private JLabel img;
+
+	private ConfigInfo Bing_config=new ConfigInfo();
+
 	public WordContent_ICIBA() {
+		Bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
 		setLayout(null);
-		setBounds(WordContentConfig.LOC_X, WordContentConfig.LOC_Y3, WordContentConfig.WIDTH, WordContentConfig.HEIGHT);
+		setBounds(Bing_config.LOC_Content_X, Bing_config.LOC_Content_Y, Bing_config.Content_WIDTH, Bing_config.Content_HEIGHT);
 		translation = new WordPanel();
 		add(translation);
 	}
@@ -36,7 +42,7 @@ public class WordContent_ICIBA extends JPanel{
 		private JLabel wordDescription;
 		
 		public WordPanel() {
-			setBounds(0, 0, WordContentConfig.WIDTH, WordContentConfig.HEIGHT - 10);
+			setBounds(0, 0, Bing_config.Content_WIDTH, Bing_config.Content_HEIGHT - 10);
 			setLayout(null);
 			wordDescription = new JLabel("");
 			wordDescription.setBounds(10, 10, this.getWidth()-10, this.getHeight() - 10);
