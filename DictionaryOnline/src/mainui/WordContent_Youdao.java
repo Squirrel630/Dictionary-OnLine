@@ -57,11 +57,17 @@ public class WordContent_Youdao extends JPanel{
 			add(wordDescription);
 		}
 		
-//		private void updateContent(WordInfo te) {
-			// TODO Auto-generated method stub
-		//	wordName=te.getWord();
-		//	wordDescription=te.getDescrption();
-	//	}
+		public void updateConfig(){
+			setBounds(0, 0, Youdao_config.Content_WIDTH, Youdao_config.Content_HEIGHT - 10);
+			setLayout(null);
+			wordDescription = new JLabel("");
+			wordDescription.setBounds(10, 10, this.getWidth()-10, this.getHeight() - 10);
+			wordDescription.setVerticalAlignment(JLabel.TOP);
+			wordDescription.setBorder(BorderFactory.createTitledBorder("[ ÓÐµÀ´Êµä ]"));
+			wordDescription.setBackground(Color.BLUE);
+			wordDescription.setForeground(Color.blue);
+			add(wordDescription);
+		}
 
 		public void updateContent(String name, String description) {
 		//	wordName.setText(name);

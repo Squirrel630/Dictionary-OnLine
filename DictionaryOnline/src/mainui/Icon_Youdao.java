@@ -23,6 +23,11 @@ public class Icon_Youdao extends JPanel{
 	
 	public void  updateConfig(){
 		youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
-		repaint();
+		setLayout(null);
+		setBounds(youdao_config.LOC_Icon_X, youdao_config.LOC_Icon_Y, youdao_config.Icon_WIDTH, youdao_config.Icon_HEIGHT);
+		img = new JLabel(new ImageIcon("Icon_Youdao.png"));
+		img.setBounds(0, 0, youdao_config.Icon_WIDTH, youdao_config.Icon_HEIGHT);
+		add(img);
+		//this.repaint();
 	}
 }

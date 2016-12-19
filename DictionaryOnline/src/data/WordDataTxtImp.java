@@ -112,14 +112,14 @@ public class WordDataTxtImp extends WordDataService{
 				choose.setYoudao_rank(3);
 			}
 			else{
-				choose.setBing_rank(3);
+				choose.setBaidu_rank(3);
 				if(choose.getLikeBing()>choose.getLikeYoudao()){
 					choose.setBing_rank(1);
 					choose.setYoudao_rank(2);
 				}
 				else{
 					choose.setBing_rank(2);
-					choose.setYoudao_rank(3);
+					choose.setYoudao_rank(1);
 				}
 			}
 		}

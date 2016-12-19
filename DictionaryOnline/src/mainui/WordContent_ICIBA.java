@@ -54,6 +54,18 @@ public class WordContent_ICIBA extends JPanel{
 
 		}
 
+		public void updateConfig(){
+			setBounds(0, 0, Bing_config.Content_WIDTH, Bing_config.Content_HEIGHT - 10);
+			setLayout(null);
+			wordDescription = new JLabel("");
+			wordDescription.setBounds(10, 10, this.getWidth()-10, this.getHeight() - 10);
+			wordDescription.setVerticalAlignment(JLabel.TOP);
+			wordDescription.setBorder(BorderFactory.createTitledBorder("[ ±ÿ”¶¥ µ‰ ]"));
+			wordDescription.setBackground(Color.BLUE);
+			wordDescription.setForeground(Color.blue);
+			add(wordDescription);
+		}
+
 		public void updateContent(String name, String description) {
 			wordDescription.setText(description);
 		}

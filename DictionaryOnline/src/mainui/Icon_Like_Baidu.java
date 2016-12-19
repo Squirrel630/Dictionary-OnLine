@@ -23,14 +23,21 @@ public class Icon_Like_Baidu  extends JButton implements ActionListener{
 		img.setBounds(5, 5, baidu_config.Like_WIDTH,baidu_config.Like_HEIGHT);
 		add(img);
 		addActionListener(this);
-		//addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		DataFactory.getDataService().addBaiduLike();
-		DataFactory.getDataService().writeToServer();
-
+	//	DataFactory.getDataService().writeToServer();
 	}
 
+	public void updateConfig(){
+		baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
+		setLayout(null);
+		setBounds(baidu_config.LOC_Like_X, baidu_config.LOC_Like_Y, baidu_config.Like_WIDTH+10, baidu_config.Like_HEIGHT+10);
+		img = new JLabel(new ImageIcon("Icon_Like.png"));
+		img.setBounds(5, 5, baidu_config.Like_WIDTH,baidu_config.Like_HEIGHT);
+		add(img);
+		addActionListener(this);
+	}
 }

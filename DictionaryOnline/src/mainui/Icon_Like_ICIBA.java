@@ -28,8 +28,16 @@ public class Icon_Like_ICIBA  extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO 自动生成的方法存根
 		DataFactory.getDataService().addBingLike();
-		DataFactory.getDataService().writeToServer();
-
+//		DataFactory.getDataService().writeToServer();
 	}
 	
+	public void updateConfig(){
+		bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
+		setLayout(null);
+		setBounds(bing_config.LOC_Like_X, bing_config.LOC_Like_Y, bing_config.Like_WIDTH+10, bing_config.Like_HEIGHT+10);
+		img = new JLabel(new ImageIcon("Icon_Like.png"));
+		img.setBounds(5, 5, bing_config.Like_WIDTH,bing_config.Like_HEIGHT);
+		add(img);
+		addActionListener(this);
+	}
 }

@@ -69,9 +69,24 @@ public class WordContent extends JPanel{
 			wordDescription.setText(description);
 		}
 	
-		public void setConfig_Baidu(ConfigInfo baidu){
-			
+		public void updateConfig(){
+			setBounds(0, 0, baidu_config.Content_WIDTH, baidu_config.Content_HEIGHT-10);
+			setLayout(null);
+	//		wordName = new JLabel("");
+	//		wordName.setBounds(10, 0, this.getWidth()-40, 50);
+			wordDescription = new JLabel("");
+			wordDescription.setBounds(10, 10, this.getWidth()-10, this.getHeight() - 10);
+			wordDescription.setVerticalAlignment(JLabel.TOP);
+			wordDescription.setBorder(BorderFactory.createTitledBorder("[ 百度词典 ]"));
+			wordDescription.setBackground(Color.BLUE);
+//			Font name = wordName.getFont();
+		//	wordName.setFont(new Font(name.getFontName(),Font.BOLD,name.getSize() + 10));
+			wordDescription.setForeground(Color.blue);
+		//	wordName.setForeground(Color.darkGray);
+		//	add(wordName);
+			add(wordDescription);			
 		}
+		
 	}
 
 }

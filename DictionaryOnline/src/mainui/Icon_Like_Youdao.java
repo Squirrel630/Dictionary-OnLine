@@ -28,7 +28,16 @@ public class Icon_Like_Youdao extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO 自动生成的方法存根
 		DataFactory.getDataService().addYoudaoLike();
-		DataFactory.getDataService().writeToServer();
+//		DataFactory.getDataService().writeToServer();
 	}
 
+	public void updateConfig(){
+		youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
+		setLayout(null);
+		setBounds(youdao_config.LOC_Like_X, youdao_config.LOC_Like_Y, youdao_config.Like_WIDTH+10, youdao_config.Like_HEIGHT+10);
+		img = new JLabel(new ImageIcon("Icon_Like.png"));
+		img.setBounds(5, 5, youdao_config.Like_WIDTH,youdao_config.Like_HEIGHT);
+		add(img);
+		addActionListener(this);
+	}
 }

@@ -25,6 +25,12 @@ public class Icon_ICIBA  extends JPanel {
 	
 	public void updateConfig(){
 		bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
-		repaint();
+//		bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
+		setLayout(null);
+		setBounds(bing_config.LOC_Icon_X, bing_config.LOC_Icon_Y, bing_config.Icon_WIDTH, bing_config.Icon_HEIGHT);
+		img = new JLabel(new ImageIcon("Icon_ICIBA.png"));
+		img.setBounds(0, 0, bing_config.Icon_WIDTH, bing_config.Icon_HEIGHT);
+		add(img);
+		//this.repaint();
 	}
 }
