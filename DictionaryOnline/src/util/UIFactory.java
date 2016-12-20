@@ -1,6 +1,6 @@
 package util;
 
-import config.LoginButtonConfig;
+import mainui.CheckMessageButton;
 import mainui.ChooseBox;
 import mainui.Icon_Baidu;
 import mainui.Icon_ICIBA;
@@ -43,8 +43,10 @@ public class UIFactory {
 	private static ChooseBox chooseBox;
 	private static OnlineUserButton onlineUserButton;
 	private static ShareCardButton shareCardButton;
+	private static CheckMessageButton checkMessageButton;
 	
 //	public static 
+	
 	public static MainFrame getMainFrameInstance() {
 		if(frame == null) {
 			frame = new MainFrame();
@@ -170,5 +172,10 @@ public class UIFactory {
 		if(shareCardButton==null)
 			shareCardButton=new ShareCardButton();
 		return shareCardButton;
+	}
+	public static CheckMessageButton getCheckMessageButton(){
+		if(checkMessageButton==null)
+			checkMessageButton=new CheckMessageButton();
+		return checkMessageButton;
 	}
 }

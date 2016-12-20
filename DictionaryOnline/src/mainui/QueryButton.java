@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import org.omg.CORBA.INTERNAL;
+
 import config.QueryButtonConfig;
 import po.WordInfo;
 import util.DataFactory;
@@ -26,6 +28,14 @@ public class QueryButton extends JButton implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+
+		int baidu=0,youdao=0,bing=0;
+		baidu = DataFactory.getDataService().getBaiduFromServer();
+		youdao = DataFactory.getDataService().getYoudaoFromServer();
+		bing = DataFactory.getDataService().getBingFromServer();
+
+//		int baidu=0,youdao=0,bing=0;
+		DataFactory.getDataService().setCountLike(baidu, youdao, bing);
 		String item = (String)UIFactory.getWordInputFieldInstance().getSelectedItem();
 		if(item.equals("")) {
 			;//System.out.println("NothingInput");

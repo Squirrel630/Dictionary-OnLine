@@ -8,6 +8,7 @@ import Client.LogIn;
 import dataservice.WordDataService;
 import po.ChooseInfo;
 import po.UserInfo;
+//import po.myuserInfo;
 import po.WordInfo;
 import util.UIFactory;
 import web.Search_Baidu;
@@ -157,22 +158,121 @@ public class WordDataTxtImp extends WordDataService{
 		}
 	};
 
-//	@Override
-//	public void setBaiduVisible(int i) {
-//		// TODO 自动生成的方法存根
-//		
-//	}
+
 	
-	public  void shareCard(){
-		//WordInfo
-		if(choose.getBaidu()){
-			//发送baidu_trans
-		}
-		if(choose.getYoudao()){
-			
-		}
-		if (choose.getBing()) {
-			
-		}
+	public void shareCard(){
+//		myuserInfo.wordCardInfo.setSendUser(myuserInfo.getUsername());
+//		String receiveuser="";
+//		myuserInfo.wordCardInfo.setReceiveUser(receiveuser);
+//		myuserInfo.wordCardInfo.setChooseFlag(0);
+//		try {
+//			client.getOutputToServer().writeObject(myuserInfo.wordCardInfo);
+//		} catch (IOException e1) {
+//			// TODO 自动生成的 catch 块
+//			e1.printStackTrace();
+//		}
+//     //   String message="";
+//		try {
+//			Boolean flag = client.getInputFromServer().readBoolean();
+//		} catch (IOException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
 	};
+	
+	public  void setCountLike(int baidu,int youdao,int bing){
+		choose.setLikeBaidu(baidu);
+		choose.setLikeBing(bing);
+		choose.setLikeYoudao(youdao);
+	};
+
+	public void getUser(){
+		myuserInfo=LogIn.getUser();
+	};
+	
+	public void checkmessage(){
+		//myuserInfo
+    	getUser();
+    	myuserInfo.setClientFlag(4);
+//    	myuserInfo.wordCardInfo.setChooseFlag(1);
+        try {
+			client.getOutputToServer().writeObject(myuserInfo);
+		} catch (IOException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
+        String message="";
+		try {
+			message = client.getInputFromServer().readLine();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+//        flag = a;
+        if(message!=""){
+        	String[] getmeaasge=message.split("$");
+//        	myuserInfo.wordCardInfo.setSendUser(getmeaasge[0]);
+//        	myuserInfo.wordCardInfo.setReceiveUser(getmeaasge[1]);
+//        	//myuserInfo.wordCardInfo
+        	int i=2;
+        	while(getmeaasge[i]!=null){
+        	String temp=getmeaasge[i];
+        	i++;
+//        	if(temp=="baidu"){
+//        	myuserInfo.wordCardInfo.setBaiduTrans(getmeaasge[i]);	
+//        	}
+//        	else if(temp=="youdao"){
+//        		myuserInfo.wordCardInfo.setYoudaoTrans(getmeaasge[i]);
+//        	}
+//        	else {
+//				 myuserInfo.wordCardInfo.setBingTrans(getmeaasge[i]);
+//			}
+        	i++;
+        	}
+        }
+	};
+	
+	public int getBaiduFromServer(){
+		int result = 0;
+		try {
+        	client = new Client();
+        	choose.setClientFlag(2);
+        	client.getOutputToServer().writeObject(choose);
+        	result = client.getInputFromServer().readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int getYoudaoFromServer(){
+		int result = 0;
+		try {
+        	client = new Client();
+        	choose.setClientFlag(3);
+        	client.getOutputToServer().writeObject(choose);
+        	result = client.getInputFromServer().readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int getBingFromServer(){
+		int result = 0;
+		try {
+        	client = new Client();
+        	choose.setClientFlag(4);
+        	client.getOutputToServer().writeObject(choose);
+        	result = client.getInputFromServer().readInt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
 }

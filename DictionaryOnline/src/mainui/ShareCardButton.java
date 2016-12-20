@@ -7,6 +7,8 @@ import javax.swing.JButton;
 
 import Client.LogIn;
 import config.LoginButtonConfig;
+import util.DataFactory;
+import util.UIFactory;
 
 public class ShareCardButton extends JButton implements ActionListener{
 	public ShareCardButton() {
@@ -18,7 +20,6 @@ public class ShareCardButton extends JButton implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		LogIn getlogin=new LogIn();
+		DataFactory.getDataService().shareCard();
 	}
-
 }

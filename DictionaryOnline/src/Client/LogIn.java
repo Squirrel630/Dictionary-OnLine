@@ -149,41 +149,8 @@ public class LogIn extends JFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-//                if(name.equals("")){
-//                    JOptionPane.showMessageDialog(null, "The user name can not be empty!");
-//                    return;
-//                }
-//                else if(mima.equals("")) {
-//                    JOptionPane.showMessageDialog(null, "The password can't be empty!");
-//                    return;
-//                }
-//                queryString = "select * from Users where Username = '" + name + "' and Passwords = '"
-//                        + mima + "';";
-//                try {
-//                    resultSet = statement.executeQuery(queryString);
-//                    if (!resultSet.next()) {
-//                        JOptionPane.showMessageDialog(null, "Modify password failed!");
-//                        return;
-//                    }
-//                    changePasswordUI = new ChangePasswordUI();
-//                }catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
             }
             else if(e.getSource() == changePasswordUI.getEnsureChange()){
-//                try {
-//                    newMima = changePasswordUI.getNewPassWord();
-//                    if(newMima.equals("")){
-//                        JOptionPane.showMessageDialog(null, "The password can't be empty!");
-//                        return;
-//                    }
-//                    queryString = "update Users set passwords = '" + newMima + "' where username = '" + name + "';";
-//                    statement.execute(queryString);
-//                    JOptionPane.showMessageDialog(null, "The password was modified successfully!");
-//                    return;
-//                }catch (SQLException e1) {
-//                    e1.printStackTrace();
-//                }
             }
         }
     }
@@ -266,5 +233,3 @@ public class LogIn extends JFrame{
     	}
     }
 }
-
-

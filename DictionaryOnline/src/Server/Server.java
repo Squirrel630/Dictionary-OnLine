@@ -5,7 +5,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import po.ChooseInfo;
 import po.UserInfo;
 
 /**
@@ -132,8 +138,70 @@ public class Server {
     }
     
     private void haddldeLike(Object oj) throws IOException{
-    	UserInfo user = (UserInfo) oj;
+    	ChooseInfo likes = (ChooseInfo) oj;
+    	if(likes.getClientFlag() == 1){
+    	try {
+    		queryString = "update numOfLikes set likes = " + likes.getLikeBaidu() + 
+    				" where website = 'baidu';";
+    		statement.execute(queryString);
+    		queryString = "update numOfLikes set likes = " + likes.getLikeYoudao() + 
+    				" where website = 'youdao';";
+    		statement.execute(queryString);
+    		queryString = "update numOfLikes set likes = " + likes.getLikeBing() + 
+    				" where website = 'bing';";
+    		statement.execute(queryString);
+    	
+			statement.execute(queryString);
+            outputToClient.writeBoolean(flag);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	}
+    	else if(likes.getClientFlag() == 2){
+    		try {
+        		queryString = "select likes from numOfLikes where website = 'baidu';";
+        		resultSet =  statement.executeQuery(queryString);
+        		int result = 0;
+        		if(resultSet.next()){
+        			result = resultSet.getInt(1);
+        		}
+                outputToClient.writeInt(result);
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	else if(likes.getClientFlag() == 3){
+    		try {
+        		queryString = "select likes from numOfLikes where website = 'youdao';";
+        		resultSet =  statement.executeQuery(queryString);
+        		int result = 0;
+        		if(resultSet.next()){
+        			result = resultSet.getInt(1);
+        		}
+                outputToClient.writeInt(result);
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	else if(likes.getClientFlag() == 4){
+    		try {
+        		queryString = "select likes from numOfLikes where website = 'bing';";
+        		resultSet =  statement.executeQuery(queryString);
+        		int result = 0;
+        		if(resultSet.next()){
+        			result = resultSet.getInt(1);
+        		}
+                outputToClient.writeInt(result);
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
     }
+
     
     private void initialzeDB(){
         try{

@@ -32,7 +32,10 @@ public class ChooseInfo implements java.io.Serializable{
 	public int  getLikeBing() {
 		return Like_Bing;
 	}
-	
+	public void setClientFlag(int i){
+		clientflag = i;
+	}
+
 	public void addLikeBaidu(){
 		Like_Baidu++;
 	}

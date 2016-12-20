@@ -68,6 +68,7 @@ public class WordContent_ICIBA extends JPanel{
 		}
 
 		public void updateContent(String name, String description) {
+			DataFactory.getDataService().wordCardInfo.setBingTrans(description);
 			wordDescription.setText(description);
 		}
 		

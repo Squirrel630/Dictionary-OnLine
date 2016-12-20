@@ -5,6 +5,7 @@ public class UserInfo implements java.io.Serializable{
 	private String password;
 	private int clientflag;
 	private Boolean IsLogin;
+	//public WordCardInfo wordCardInfo;
 	
 	public String getUsername() {
 		return username;

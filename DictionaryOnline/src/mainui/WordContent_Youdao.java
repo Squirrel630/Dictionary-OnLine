@@ -73,6 +73,7 @@ public class WordContent_Youdao extends JPanel{
 
 		public void updateContent(String name, String description) {
 		//	wordName.setText(name);
+			DataFactory.getDataService().wordCardInfo.setYoudaoTrans(description);
 			wordDescription.setText(description);
 		}
 		

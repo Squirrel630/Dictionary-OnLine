@@ -58,6 +58,7 @@ public class MainFrame extends JFrame{
 		container.add(UIFactory.getChooseBox());
 		container.add(UIFactory.getShareCardButton());
 		container.add(UIFactory.getOnlineUserButton());
+		container.add(UIFactory.getCheckMessageButton());
 	}
 
 	

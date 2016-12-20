@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import po.ConfigInfo;
 import po.WordInfo;
 import util.DataFactory;
+import util.UIFactory;
 /**
  * WordContent : 
  * 		To show the information of word
@@ -66,6 +67,7 @@ public class WordContent extends JPanel{
 
 		public void updateContent(String name, String description) {
 			//wordName.setText(">> "+name);
+			DataFactory.getDataService().wordCardInfo.setBaiduTrans(description);
 			wordDescription.setText(description);
 		}
 	
