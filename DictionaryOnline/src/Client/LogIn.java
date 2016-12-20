@@ -19,17 +19,18 @@ import javax.swing.JTextField;
 
 import config.LogInFrameConfig;
 import po.UserInfo;
+import util.DataFactory;
 
 /**
  * Created by DF on 2016/12/14.
  */
 public class LogIn extends JFrame{
 
-	public static UserInfo userInfo;
-	
-	public static UserInfo getUser(){
-		return userInfo;
-	}
+//	public static UserInfo userInfo;
+//	
+//	public static UserInfo getUser(){
+//		return userInfo;
+//	}
 	
 	JLabel label1,label2;
 
@@ -103,12 +104,12 @@ public class LogIn extends JFrame{
         public void actionPerformed(ActionEvent e) {
         	String name=username.getText();
         	String psd=password.getText();
-        	userInfo=new UserInfo(name, psd);
+        	DataFactory.getDataService().myuserInfo=new UserInfo(name, psd);
         	client=new Client();
             if (e.getSource() == login) {
               try {
-            	userInfo.setClientFlag(1);
-                client.getOutputToServer().writeObject(userInfo);
+            	  DataFactory.getDataService().myuserInfo.setClientFlag(1);
+                client.getOutputToServer().writeObject(DataFactory.getDataService().myuserInfo);
                 boolean a = client.getInputFromServer().readBoolean();
                 flag = a;
                 if(flag == true){
@@ -128,8 +129,8 @@ public class LogIn extends JFrame{
                     return;
                 }
                 try {
-                	userInfo.setClientFlag(2);
-                    client.getOutputToServer().writeObject(userInfo);
+                	DataFactory.getDataService().myuserInfo.setClientFlag(2);
+                    client.getOutputToServer().writeObject(DataFactory.getDataService().myuserInfo);
                     boolean a = client.getInputFromServer().readBoolean();
                     if(a == true)
                     	JOptionPane.showMessageDialog(null, "×¢²á³É¹¦£¡");
@@ -140,8 +141,8 @@ public class LogIn extends JFrame{
             }
             else if(e.getSource() == modify && flag == true){
             	try {
-            		userInfo.setClientFlag(3);
-            		client.getOutputToServer().writeObject(userInfo);
+            		DataFactory.getDataService().myuserInfo.setClientFlag(3);
+            		client.getOutputToServer().writeObject(DataFactory.getDataService().myuserInfo);
 					String userlist = client.getInputFromServer().readUTF();
 					System.out.println(userlist);
 					new ShowUserList(userlist);

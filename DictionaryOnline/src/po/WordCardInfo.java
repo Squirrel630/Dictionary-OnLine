@@ -7,6 +7,17 @@ public class WordCardInfo implements java.io.Serializable{
 	private String youdaoTrans;
 	private String bingTrans;
 	private int ChooseFlag;
+	
+	public WordCardInfo() {
+		// TODO 自动生成的构造函数存根
+		sendUser="";
+		ReceiveUser="";
+		baiduTrans="";
+		youdaoTrans="";
+		bingTrans="";
+		ChooseFlag=-1;
+	}
+
 	public String getSendUser() {
 		return sendUser;
 	}
@@ -23,7 +34,7 @@ public class WordCardInfo implements java.io.Serializable{
 		return ReceiveUser;
 	}
 	public void setReceiveUser(String receiveUser) {
-		ReceiveUser = receiveUser;
+		this.ReceiveUser = receiveUser;
 	}
 	public String getYoudaoTrans() {
 		return youdaoTrans;

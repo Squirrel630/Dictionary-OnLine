@@ -27,7 +27,7 @@ public abstract class  WordDataService{
 	public static ChooseInfo choose=new ChooseInfo();
 	public static UserInfo myuserInfo;
 	protected Client client;
-	public static WordCardInfo wordCardInfo;
+	public static WordCardInfo wordCardInfo=new WordCardInfo();
 
 	/**
 	 * The initial of dictionary
@@ -65,7 +65,7 @@ public abstract class  WordDataService{
 	public abstract WordInfo query(String word);
 	public abstract String description(String word);
 	
-	public abstract void getUser();
+//	public abstract void getUser();
 	public abstract void initLike(ChooseInfo getlike);
 	public abstract UserInfo checkuser();
 	public abstract void addBaiduLike();

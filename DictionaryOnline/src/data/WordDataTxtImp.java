@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import Client.Client;
-import Client.LogIn;
 import dataservice.WordDataService;
 import po.ChooseInfo;
 import po.UserInfo;
@@ -50,7 +49,7 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public UserInfo checkuser(){
-		return LogIn.getUser();
+		return myuserInfo;
 	};
 	
 //	public void choose(){
@@ -157,27 +156,25 @@ public class WordDataTxtImp extends WordDataService{
 			e.printStackTrace();
 		}
 	};
-
-
 	
 	public void shareCard(){
-//		myuserInfo.wordCardInfo.setSendUser(myuserInfo.getUsername());
-//		String receiveuser="";
-//		myuserInfo.wordCardInfo.setReceiveUser(receiveuser);
-//		myuserInfo.wordCardInfo.setChooseFlag(0);
-//		try {
-//			client.getOutputToServer().writeObject(myuserInfo.wordCardInfo);
-//		} catch (IOException e1) {
-//			// TODO 自动生成的 catch 块
-//			e1.printStackTrace();
-//		}
-//     //   String message="";
-//		try {
-//			Boolean flag = client.getInputFromServer().readBoolean();
-//		} catch (IOException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
+		wordCardInfo.setSendUser(myuserInfo.getUsername());
+		String receiveuser="";
+		wordCardInfo.setReceiveUser(receiveuser);
+		wordCardInfo.setChooseFlag(0);
+		try {
+			client.getOutputToServer().writeObject(wordCardInfo);
+		} catch (IOException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
+     //   String message="";
+		try {
+			Boolean flag = client.getInputFromServer().readBoolean();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	};
 	
 	public  void setCountLike(int baidu,int youdao,int bing){
@@ -186,24 +183,25 @@ public class WordDataTxtImp extends WordDataService{
 		choose.setLikeYoudao(youdao);
 	};
 
-	public void getUser(){
-		myuserInfo=LogIn.getUser();
-	};
+//	public void getUser(){
+//		myuserInfo=LogIn.getUser();
+//	};
 	
 	public void checkmessage(){
-		//myuserInfo
-    	getUser();
-    	myuserInfo.setClientFlag(4);
-//    	myuserInfo.wordCardInfo.setChooseFlag(1);
+//    	getUser();
+		System.out.println(myuserInfo.getUsername());
+    	wordCardInfo.setReceiveUser(myuserInfo.getUsername());
+    	wordCardInfo.setChooseFlag(1);
+       	client = new Client();
         try {
-			client.getOutputToServer().writeObject(myuserInfo);
+			client.getOutputToServer().writeObject(wordCardInfo);
 		} catch (IOException e1) {
 			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
 		}
         String message="";
 		try {
-			message = client.getInputFromServer().readLine();
+			message = client.getInputFromServer().readUTF();
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -211,22 +209,22 @@ public class WordDataTxtImp extends WordDataService{
 //        flag = a;
         if(message!=""){
         	String[] getmeaasge=message.split("$");
-//        	myuserInfo.wordCardInfo.setSendUser(getmeaasge[0]);
-//        	myuserInfo.wordCardInfo.setReceiveUser(getmeaasge[1]);
-//        	//myuserInfo.wordCardInfo
+        	wordCardInfo.setSendUser(getmeaasge[0]);
+        	wordCardInfo.setReceiveUser(getmeaasge[1]);
+        	//myuserInfo.wordCardInfo
         	int i=2;
         	while(getmeaasge[i]!=null){
         	String temp=getmeaasge[i];
         	i++;
-//        	if(temp=="baidu"){
-//        	myuserInfo.wordCardInfo.setBaiduTrans(getmeaasge[i]);	
-//        	}
-//        	else if(temp=="youdao"){
-//        		myuserInfo.wordCardInfo.setYoudaoTrans(getmeaasge[i]);
-//        	}
-//        	else {
-//				 myuserInfo.wordCardInfo.setBingTrans(getmeaasge[i]);
-//			}
+        	if(temp=="baidu"){
+        		wordCardInfo.setBaiduTrans(getmeaasge[i]);	
+        	}
+        	else if(temp=="youdao"){
+        		wordCardInfo.setYoudaoTrans(getmeaasge[i]);
+        	}
+        	else {
+				wordCardInfo.setBingTrans(getmeaasge[i]);
+			}
         	i++;
         	}
         }

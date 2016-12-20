@@ -1,14 +1,11 @@
 package mainui;
 
 import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import config.WordContentConfig;
 import po.ConfigInfo;
 import po.WordInfo;
 import util.DataFactory;

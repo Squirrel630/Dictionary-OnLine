@@ -8,7 +8,7 @@ public class UserInfo implements java.io.Serializable{
 	//public WordCardInfo wordCardInfo;
 	
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 	public String getPassword() {
 		return password;
