@@ -22,14 +22,11 @@ public class Icon_Baidu extends JPanel{
 	}
 	
 	public void updateConfig(){
-//		baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
 		baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
 		setLayout(null);
 		setBounds(baidu_config.LOC_Icon_X, baidu_config.LOC_Icon_Y, baidu_config.Icon_WIDTH, baidu_config.Icon_HEIGHT);
 		img = new JLabel(new ImageIcon("Icon_Baidu.png"));
 		img.setBounds(0, 0, baidu_config.Icon_WIDTH, baidu_config.Icon_HEIGHT);
 		add(img);
-
-//		this.repaint();
 	}
 }

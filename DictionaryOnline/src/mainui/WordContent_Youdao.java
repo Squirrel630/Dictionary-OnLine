@@ -33,6 +33,13 @@ public class WordContent_Youdao extends JPanel{
 		add(translation);
 	}
 	
+	public void updateConfig(){
+		Youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
+		setLayout(null);
+		setBounds(Youdao_config.LOC_Content_X, Youdao_config.LOC_Content_Y, Youdao_config.Content_WIDTH, Youdao_config.Content_HEIGHT);
+		translation = new WordPanel();
+		add(translation);
+	}
 	public void updateContent(WordInfo info) {
 		this.translation.updateContent(info.getWord(), info.getDescrption());
 		repaint();

@@ -28,6 +28,7 @@ public abstract class  WordDataService{
 	public static UserInfo myuserInfo;
 	protected Client client;
 	public static WordCardInfo wordCardInfo=new WordCardInfo();
+	public static WordCardInfo myMessage=new WordCardInfo();
 
 	/**
 	 * The initial of dictionary
@@ -65,7 +66,6 @@ public abstract class  WordDataService{
 	public abstract WordInfo query(String word);
 	public abstract String description(String word);
 	
-//	public abstract void getUser();
 	public abstract void initLike(ChooseInfo getlike);
 	public abstract UserInfo checkuser();
 	public abstract void addBaiduLike();
@@ -76,7 +76,6 @@ public abstract class  WordDataService{
 	public abstract void shareCard();
 	public abstract void setCountLike(int baidu,int youdao,int bing);
 	public abstract void checkmessage();
-//	public abstract void setWordcard();
 	public abstract int getBaiduFromServer();
 	public abstract int getBingFromServer();
 	public abstract int getYoudaoFromServer();

@@ -3,12 +3,15 @@ package data;
 import java.io.IOException;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
+
 import Client.Client;
 import dataservice.WordDataService;
 import po.ChooseInfo;
 import po.UserInfo;
 //import po.myuserInfo;
 import po.WordInfo;
+import util.DataFactory;
 import util.UIFactory;
 import web.Search_Baidu;
 import web.Search_Bing;
@@ -142,6 +145,10 @@ public class WordDataTxtImp extends WordDataService{
 		UIFactory.getIcon_Baidu().updateConfig();
 		UIFactory.getIcon_ICIBA().updateConfig();
 		UIFactory.getIcon_Youdao().updateConfig();
+		UIFactory.getIcon_Like_Baidu().updateConfig();
+		UIFactory.getIcon_Like_ICIBA().updateConfig();
+		UIFactory.getIcon_Like_Youdao().updateConfig();
+		UIFactory.getWordContentInstance().updateConfig();
 	}
 
 	@Override
@@ -158,9 +165,9 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public void shareCard(){
+//		wordCardInfo.setSendUser(wordCardInfo.getUsername());
+//		String receiveuser="";
 		wordCardInfo.setSendUser(myuserInfo.getUsername());
-		String receiveuser="";
-		wordCardInfo.setReceiveUser(receiveuser);
 		wordCardInfo.setChooseFlag(0);
 		try {
 			client.getOutputToServer().writeObject(wordCardInfo);
@@ -171,6 +178,12 @@ public class WordDataTxtImp extends WordDataService{
      //   String message="";
 		try {
 			Boolean flag = client.getInputFromServer().readBoolean();
+            if(flag == true){
+            	JOptionPane.showMessageDialog(null, "发送成功!");
+            }
+            else{
+            	JOptionPane.showMessageDialog(null, "发送失败！请确保对方在线！");
+            }
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -182,10 +195,6 @@ public class WordDataTxtImp extends WordDataService{
 		choose.setLikeBing(bing);
 		choose.setLikeYoudao(youdao);
 	};
-
-//	public void getUser(){
-//		myuserInfo=LogIn.getUser();
-//	};
 	
 	public void checkmessage(){
 //    	getUser();
@@ -211,7 +220,6 @@ public class WordDataTxtImp extends WordDataService{
         	String[] getmeaasge=message.split("$");
         	wordCardInfo.setSendUser(getmeaasge[0]);
         	wordCardInfo.setReceiveUser(getmeaasge[1]);
-        	//myuserInfo.wordCardInfo
         	int i=2;
         	while(getmeaasge[i]!=null){
         	String temp=getmeaasge[i];

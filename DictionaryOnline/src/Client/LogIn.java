@@ -108,7 +108,7 @@ public class LogIn extends JFrame{
         	client=new Client();
             if (e.getSource() == login) {
               try {
-            	  DataFactory.getDataService().myuserInfo.setClientFlag(1);
+            	DataFactory.getDataService().myuserInfo.setClientFlag(1);
                 client.getOutputToServer().writeObject(DataFactory.getDataService().myuserInfo);
                 boolean a = client.getInputFromServer().readBoolean();
                 flag = a;

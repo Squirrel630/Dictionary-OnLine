@@ -28,6 +28,13 @@ public class WordContent_ICIBA extends JPanel{
 		add(translation);
 	}
 	
+	void updateConfig(){
+		Bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
+		setLayout(null);
+		setBounds(Bing_config.LOC_Content_X, Bing_config.LOC_Content_Y, Bing_config.Content_WIDTH, Bing_config.Content_HEIGHT);
+		translation = new WordPanel();
+		add(translation);
+	}
 	public void updateContent(WordInfo info) {
 		this.translation.updateContent(info.getWord(), info.getDescrption());
 		repaint();
