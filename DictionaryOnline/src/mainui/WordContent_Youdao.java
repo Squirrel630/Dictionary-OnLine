@@ -1,14 +1,11 @@
 package mainui;
 
 import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import config.WordContentConfig;
 import po.ConfigInfo;
 import po.WordInfo;
 import util.DataFactory;
@@ -33,13 +30,14 @@ public class WordContent_Youdao extends JPanel{
 		add(translation);
 	}
 	
-	public void updateConfig(){
+	public void updateConfig(){ 
 		Youdao_config.initConfig(DataFactory.getDataService().choose.getYoudao_rank());
 		setLayout(null);
 		setBounds(Youdao_config.LOC_Content_X, Youdao_config.LOC_Content_Y, Youdao_config.Content_WIDTH, Youdao_config.Content_HEIGHT);
 		translation = new WordPanel();
 		add(translation);
 	}
+	
 	public void updateContent(WordInfo info) {
 		this.translation.updateContent(info.getWord(), info.getDescrption());
 		repaint();
@@ -79,7 +77,6 @@ public class WordContent_Youdao extends JPanel{
 		}
 
 		public void updateContent(String name, String description) {
-		//	wordName.setText(name);
 			DataFactory.getDataService().wordCardInfo.setYoudaoTrans(description);
 			wordDescription.setText(description);
 		}

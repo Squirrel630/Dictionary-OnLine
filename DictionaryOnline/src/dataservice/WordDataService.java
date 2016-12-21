@@ -75,6 +75,8 @@ public abstract class  WordDataService{
 	public abstract void DisplayUI(); 
 	public abstract void shareCard();
 	public abstract void setCountLike(int baidu,int youdao,int bing);
+	public abstract void refreshLike();
+	public abstract void resetAddLike();
 	public abstract void checkmessage();
 	public abstract int getBaiduFromServer();
 	public abstract int getBingFromServer();

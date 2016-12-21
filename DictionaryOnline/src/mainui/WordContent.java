@@ -40,6 +40,7 @@ public class WordContent extends JPanel{
 		add(translation);
 		translation.setVisible(true);
 	}
+	
 	public void updateContent(WordInfo info) {
 		this.translation.updateContent(info.getWord(), info.getDescrption());
 		repaint();

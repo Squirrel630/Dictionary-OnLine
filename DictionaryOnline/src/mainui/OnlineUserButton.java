@@ -31,13 +31,12 @@ public class OnlineUserButton extends JButton implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 		//	LogIn getlogin=new LogIn();
 			try {
-				String userlist = "~1!2";
-				new ShowUserList(userlist);
 				Client client = new Client();
 //        		userInfo.setClientFlag(3);
 				UserInfo temp = new UserInfo("", "");
+				temp.setClientFlag(3);
         		client.getOutputToServer().writeObject(temp);
-				userlist = client.getInputFromServer().readUTF();
+				String userlist = client.getInputFromServer().readUTF();
 				System.out.println(userlist);
 				new ShowUserList(userlist);
 			} catch (IOException e1) {
@@ -46,52 +45,58 @@ public class OnlineUserButton extends JButton implements ActionListener{
 			}
 		}
 		
-		class ShowUserList extends JFrame{
-	    	public JTextArea jta1,jta2;
-	    	public ShowUserList(String str){
-	    		jta1 = new JTextArea();
-	    		jta2 = new JTextArea();
-	    		JPanel p1 = new JPanel();
-	    		p1.setLayout(new BorderLayout());
-	    		p1.add(new JLabel("在线"),BorderLayout.NORTH);
-	    		p1.add(jta1,BorderLayout.CENTER);
-	    		JPanel p2 = new JPanel();
-	    		p2.setLayout(new BorderLayout());
-	    		p2.add(new JLabel("离线"),BorderLayout.NORTH);
-	    		p2.add(jta2,BorderLayout.CENTER);
+	class ShowUserList extends JFrame{
+    	public JTextArea jta1,jta2;
+    	public ShowUserList(String str){
+    		jta1 = new JTextArea();
+    		jta2 = new JTextArea();
+    		JPanel p1 = new JPanel();
+    		p1.setLayout(new BorderLayout());
+    		p1.add(new JLabel("在线"),BorderLayout.NORTH);
+    		p1.add(jta1,BorderLayout.CENTER);
+    		JPanel p2 = new JPanel();
+    		p2.setLayout(new BorderLayout());
+    		p2.add(new JLabel("离线"),BorderLayout.NORTH);
+    		p2.add(jta2,BorderLayout.CENTER);
 
-	    		//while(!str.equals("")){
-	            	String[] tokens1;
-	            	tokens1 = str.split("~",0);
-	            	for(int i = 0;i<tokens1.length;i++){
-	            		if(!tokens1[i].equals("")){
-	            			String temp = tokens1[i];
-	            			String[] tokens2 = temp.split("!",0);
-	            			int j = 0;
-	            			while(true){
-	            				if(!tokens2[j].equals("")){
-	            					jta1.append(tokens2[j]+"\n");
-	            					break;
-	            				}
-	            			}
-	            			for(j = j+1;j<tokens2.length;j++){
-	            				if(!tokens2[j].equals(""))
-	            					jta2.append(tokens2[j]+"\n");
-	            			}
-	            		}
-	            	}
-	            //}
-	    		
-	    		setLayout(new GridLayout(1,2));
-	    		add(p1);
-	    		add(p2);
-	    		setTitle("用户列表");
-	    		setSize(500,300);
-	    		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	            this.setLocationRelativeTo(null);
-	            this.setVisible(true);
-	            
-	    	}
-	    }
-	
+    		//while(!str.equals("")){
+            	String[] tokens1;
+            	tokens1 = str.split("~",0);
+            	for(int i = 0;i<tokens1.length;i++){
+            		if(!tokens1[i].equals("") && tokens1[i].charAt(0)!='!'){
+            			String temp = tokens1[i];
+            			String[] tokens2 = temp.split("!",0);
+            			int j = 0;
+            			while(tokens2[j].equals("")){
+            				j++;
+            			}
+            			jta1.append(tokens2[j]+"\n");
+            			for(j = j+1;j<tokens2.length;j++){
+            				if(!tokens2[j].equals(""))
+            					jta2.append(tokens2[j]+"\n");
+            			}
+            		}
+            		else if(!tokens1[i].equals("") && tokens1[i].charAt(0)=='!'){
+            			String temp = tokens1[i];
+            			String[] tokens2 = temp.split("!",0);
+            			int j = 0;
+            			for(;j<tokens2.length;j++){
+            				if(!tokens2[j].equals(""))
+            					jta2.append(tokens2[j]+"\n");
+            			}
+            		}
+            	}
+            //}
+    		
+    		setLayout(new GridLayout(1,2));
+    		add(p1);
+    		add(p2);
+    		setTitle("用户列表");
+    		setSize(500,300);
+    		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setLocationRelativeTo(null);
+            this.setVisible(true);
+            
+    	}
+    }
 }

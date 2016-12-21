@@ -9,6 +9,7 @@ import Client.Client;
 import dataservice.WordDataService;
 import po.ChooseInfo;
 import po.UserInfo;
+import po.WordCardInfo;
 //import po.myuserInfo;
 import po.WordInfo;
 import util.DataFactory;
@@ -149,6 +150,8 @@ public class WordDataTxtImp extends WordDataService{
 		UIFactory.getIcon_Like_ICIBA().updateConfig();
 		UIFactory.getIcon_Like_Youdao().updateConfig();
 		UIFactory.getWordContentInstance().updateConfig();
+		UIFactory.getWordContent_ICIBA().updateConfig();
+		UIFactory.getWordContent_Youdao().updateConfig();;
 	}
 
 	@Override
@@ -167,6 +170,7 @@ public class WordDataTxtImp extends WordDataService{
 	public void shareCard(){
 //		wordCardInfo.setSendUser(wordCardInfo.getUsername());
 //		String receiveuser="";
+		client = new Client();
 		wordCardInfo.setSendUser(myuserInfo.getUsername());
 		wordCardInfo.setChooseFlag(0);
 		try {
@@ -196,6 +200,23 @@ public class WordDataTxtImp extends WordDataService{
 		choose.setLikeYoudao(youdao);
 	};
 	
+	public void refreshLike(){
+		choose.setClientFlag(1);
+		client=new Client();
+		try {
+			client.getOutputToServer().writeObject(choose);
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	};
+	
+	public void resetAddLike(){
+		choose.setAdd_Like_baidu(0);
+		choose.setAdd_Like_youdao(0);
+		choose.setAdd_Like_bing(0);
+	};
+	
 	public void checkmessage(){
 //    	getUser();
 		System.out.println(myuserInfo.getUsername());
@@ -217,26 +238,21 @@ public class WordDataTxtImp extends WordDataService{
 		}
 //        flag = a;
         if(message!=""){
-        	String[] getmeaasge=message.split("$");
+        	String[] getmeaasge=message.split("~");
         	wordCardInfo.setSendUser(getmeaasge[0]);
         	wordCardInfo.setReceiveUser(getmeaasge[1]);
+        	//myuserInfo.wordCardInfo
         	int i=2;
-        	while(getmeaasge[i]!=null){
+        	while(i<getmeaasge.length){
         	String temp=getmeaasge[i];
-        	i++;
-        	if(temp=="baidu"){
-        		wordCardInfo.setBaiduTrans(getmeaasge[i]);	
-        	}
-        	else if(temp=="youdao"){
-        		wordCardInfo.setYoudaoTrans(getmeaasge[i]);
-        	}
-        	else {
-				wordCardInfo.setBingTrans(getmeaasge[i]);
-			}
+        	String[] trans = temp.split("!");
+        	myMessage.setBaiduTrans(trans[0]);
+        	myMessage.setYoudaoTrans(trans[1]);
+        	myMessage.setBingTrans(trans[2]);
         	i++;
         	}
         }
-	};
+	}
 	
 	public int getBaiduFromServer(){
 		int result = 0;

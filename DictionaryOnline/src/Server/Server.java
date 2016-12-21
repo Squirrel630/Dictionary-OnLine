@@ -5,14 +5,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import po.ChooseInfo;
 import po.UserInfo;
+import po.WordCardInfo;
 
 /**
  * Created by DF on 2016/12/18.
@@ -21,6 +18,9 @@ public class Server {
     private ObjectInputStream inputFromClient;
     private DataOutputStream outputToClient;
     String queryString = "";
+    
+    Connection connection;
+    
     ResultSet resultSet;
 
     Statement statement;
@@ -53,12 +53,16 @@ public class Server {
                 String mark = oj.toString();
                 
                 int clientflag1 = mark.indexOf("po.UserInfo");
-                int clientflag2 = mark.indexOf("po.");
+                int clientflag2 = mark.indexOf("po.ChooseInfo");
+                int clientflag3 = mark.indexOf("po.WordCardInfo");
                 if(clientflag1!=-1){
                 	haddldeLogin(oj);
                 }
                 else if(clientflag2!=-1){
                 	haddldeLike(oj);
+                }
+                else if(clientflag3!=-1){
+                	haddldeMessage(oj);
                 }
             }
         }catch (ClassNotFoundException ex){
@@ -141,13 +145,13 @@ public class Server {
     	ChooseInfo likes = (ChooseInfo) oj;
     	if(likes.getClientFlag() == 1){
     	try {
-    		queryString = "update numOfLikes set likes = " + likes.getLikeBaidu() + 
+    		queryString = "update numOfLikes set likes = " + (likes.getLikeBaidu() +likes.getAdd_Like_baidu())+ 
     				" where website = 'baidu';";
     		statement.execute(queryString);
-    		queryString = "update numOfLikes set likes = " + likes.getLikeYoudao() + 
+    		queryString = "update numOfLikes set likes = " + (likes.getLikeYoudao()+likes.getAdd_Like_youdao()) + 
     				" where website = 'youdao';";
     		statement.execute(queryString);
-    		queryString = "update numOfLikes set likes = " + likes.getLikeBing() + 
+    		queryString = "update numOfLikes set likes = " + (likes.getLikeBing() +likes.getAdd_Like_bing())+ 
     				" where website = 'bing';";
     		statement.execute(queryString);
     	
@@ -202,13 +206,51 @@ public class Server {
     	}
     }
 
+    private void haddldeMessage(Object oj) throws IOException{
+    	WordCardInfo card = (WordCardInfo) oj;
+    	if(card.getChooseFlag() == 1){
+    	try {
+    		queryString = "select * from message where accept = '" +card.getReceiveUser() + "';";
+    		resultSet = statement.executeQuery(queryString);
+    		String result = "";
+    		if(resultSet.next()){
+    			result = result + resultSet.getString(1) + "~";
+    			result = result + resultSet.getString(2) + "~";
+    			result = result + resultSet.getString(3);
+    		}
+            outputToClient.writeUTF(result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	}
+    	else if(card.getChooseFlag() == 0){
+    		String dsc = card.getBaiduTrans()+"!" + card.getYoudaoTrans() + "!" + card.getBingTrans();
+    		System.out.println(dsc.length() + dsc);
+    		queryString = "insert into message(send,accept,description) ";
+    		queryString = queryString+"values (?,?,?);";
+    		System.out.println(queryString);
+    		try {
+    			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
+    			preparedStatement.setString(1,card.getSendUser());
+    			preparedStatement.setString(2,card.getReceiveUser());
+    			preparedStatement.setString(3,dsc);
+    			preparedStatement.execute();
+				outputToClient.writeBoolean(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    }
+    
     
     private void initialzeDB(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver loaded.");
 
-            Connection connection= DriverManager.getConnection("jdbc:mysql://localhost/dictionary","squirrel&panda","123456");
+            connection= DriverManager.getConnection("jdbc:mysql://localhost/dictionary","squirrel&panda","123456");
             System.out.println("database connected");
 
             statement = connection.createStatement();

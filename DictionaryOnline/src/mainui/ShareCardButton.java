@@ -23,7 +23,7 @@ public class ShareCardButton extends JButton implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		ShareCardUI shareCardUI=new ShareCardUI();
-		DataFactory.getDataService().shareCard();
+//		DataFactory.getDataService().shareCard();
 	}
 
     class ShareCardUI extends JFrame implements ActionListener{
@@ -44,7 +44,7 @@ public class ShareCardButton extends JButton implements ActionListener{
             ensureChange.addActionListener(this);
         }
 
-        public String getSendUser(){
+        public String getReciveUser(){
             return username.getText();
         }
 
@@ -55,8 +55,11 @@ public class ShareCardButton extends JButton implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO 自动生成的方法存根
-			DataFactory.getDataService().wordCardInfo.setSendUser(getSendUser());
-			DataFactory.getDataService().shareCard();
+			//DataFactory.getDataService().wordCardInfo.setSendUser(getSendUser());
+			if(e.getSource() == ensureChange){
+				DataFactory.getDataService().wordCardInfo.setReceiveUser(getReciveUser());
+				DataFactory.getDataService().shareCard();
+			}
 		}
     }
 }

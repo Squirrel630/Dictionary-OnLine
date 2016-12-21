@@ -89,8 +89,6 @@ public class LogIn extends JFrame{
         this.add(jp3);  //将三块面板添加到登陆框上面
         //设置显示
         this.setSize(LogInFrameConfig.WIDTH, LogInFrameConfig.HEIGHT);
-        //this.pack();
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setTitle("登陆");
@@ -151,8 +149,6 @@ public class LogIn extends JFrame{
 					e1.printStackTrace();
 				}
             }
-            else if(e.getSource() == changePasswordUI.getEnsureChange()){
-            }
         }
     }
 
@@ -204,17 +200,24 @@ public class LogIn extends JFrame{
             	String[] tokens1;
             	tokens1 = str.split("~",0);
             	for(int i = 0;i<tokens1.length;i++){
-            		if(!tokens1[i].equals("")){
+            		if(!tokens1[i].equals("") && tokens1[i].charAt(0)!='!'){
             			String temp = tokens1[i];
             			String[] tokens2 = temp.split("!",0);
             			int j = 0;
-            			while(true){
-            				if(!tokens2[j].equals("")){
-            					jta1.append(tokens2[j]+"\n");
-            					break;
-            				}
+            			while(tokens2[j].equals("")){
+            				j++;
             			}
+            			jta1.append(tokens2[j]+"\n");
             			for(j = j+1;j<tokens2.length;j++){
+            				if(!tokens2[j].equals(""))
+            					jta2.append(tokens2[j]+"\n");
+            			}
+            		}
+            		else if(!tokens1[i].equals("") && tokens1[i].charAt(0)=='!'){
+            			String temp = tokens1[i];
+            			String[] tokens2 = temp.split("!",0);
+            			int j = 0;
+            			for(;j<tokens2.length;j++){
             				if(!tokens2[j].equals(""))
             					jta2.append(tokens2[j]+"\n");
             			}

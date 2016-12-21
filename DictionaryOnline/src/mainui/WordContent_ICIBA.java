@@ -28,7 +28,7 @@ public class WordContent_ICIBA extends JPanel{
 		add(translation);
 	}
 	
-	void updateConfig(){
+	public void updateConfig(){
 		Bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
 		setLayout(null);
 		setBounds(Bing_config.LOC_Content_X, Bing_config.LOC_Content_Y, Bing_config.Content_WIDTH, Bing_config.Content_HEIGHT);

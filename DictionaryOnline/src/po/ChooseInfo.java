@@ -15,6 +15,9 @@ public class ChooseInfo implements java.io.Serializable{
 	private int Baidu_rank=1;
 	private int Youdao_rank=2;
 	private int Bing_rank=3;
+	private int Add_Like_baidu=0;
+	private int Add_Like_youdao=0;
+	private int Add_Like_bing=0;
 	
 	public ChooseInfo() {
 		// TODO 自动生成的构a造函数存根
@@ -37,13 +40,13 @@ public class ChooseInfo implements java.io.Serializable{
 	}
 
 	public void addLikeBaidu(){
-		Like_Baidu++;
+		Add_Like_baidu++;
 	}
 	public void addLikeBing(){
-		Like_Bing++;
+		Add_Like_bing++;
 	}
 	public void addLikeYoudao(){
-		Like_Youdao++;
+		Add_Like_youdao++;
 	}
 	public void setLikeBaidu(int likebaidu){
 		Like_Baidu=likebaidu;
@@ -98,6 +101,24 @@ public class ChooseInfo implements java.io.Serializable{
 	}
 	public void setBing_rank(int bing_rank) {
 		Bing_rank = bing_rank;
+	}
+	public int getAdd_Like_baidu() {
+		return Add_Like_baidu;
+	}
+	public void setAdd_Like_baidu(int add_Like_baidu) {
+		Add_Like_baidu = add_Like_baidu;
+	}
+	public int getAdd_Like_bing() {
+		return Add_Like_bing;
+	}
+	public void setAdd_Like_bing(int add_Like_bing) {
+		Add_Like_bing = add_Like_bing;
+	}
+	public int getAdd_Like_youdao() {
+		return Add_Like_youdao;
+	}
+	public void setAdd_Like_youdao(int add_Like_youdao) {
+		Add_Like_youdao = add_Like_youdao;
 	}
 
 }

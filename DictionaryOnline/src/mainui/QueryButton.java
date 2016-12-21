@@ -28,25 +28,30 @@ public class QueryButton extends JButton implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
+		try {
+			if(DataFactory.getDataService().choose.getAdd_Like_baidu()!=0||DataFactory.getDataService().choose.getAdd_Like_bing()!=0||DataFactory.getDataService().choose.getAdd_Like_youdao()!=0){
+				DataFactory.getDataService().refreshLike();
+				DataFactory.getDataService().resetAddLike();
+			}
+			int baidu=0,youdao=0,bing=0;
+			baidu = DataFactory.getDataService().getBaiduFromServer();
+			youdao = DataFactory.getDataService().getYoudaoFromServer();
+			bing = DataFactory.getDataService().getBingFromServer();
 
-		int baidu=0,youdao=0,bing=0;
-		baidu = DataFactory.getDataService().getBaiduFromServer();
-		youdao = DataFactory.getDataService().getYoudaoFromServer();
-		bing = DataFactory.getDataService().getBingFromServer();
-
-//		int baidu=0,youdao=0,bing=0;
-		DataFactory.getDataService().setCountLike(baidu, youdao, bing);
+			DataFactory.getDataService().setCountLike(baidu, youdao, bing);
+			System.out.println("baidu：　"+DataFactory.getDataService().choose.getLikeBaidu()+" youdao:"+DataFactory.getDataService().choose.getLikeYoudao()+" bing:"+DataFactory.getDataService().choose.getLikeBing());
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("未连接到服务器");
+		}
+		
 		String item = (String)UIFactory.getWordInputFieldInstance().getSelectedItem();
 		if(item.equals("")) {
 			;//System.out.println("NothingInput");
 		} 
 		else {
 			String word = (String) UIFactory.getWordInputFieldInstance().getWord();
-		
-//			WordSearchMessage wsm=new WordSearchMessage(word); //选择的翻译选项
-//			wsm.setBaidu(jcbBaidu.isSelected());
-//			wsm.setBing(jcbBing.isSelected());
-//			wsm.setYoudao(jcbYoudao.isSelected());
 			
 			int error_flag=0;
 			for(int i=0;i<word.length();i++){
