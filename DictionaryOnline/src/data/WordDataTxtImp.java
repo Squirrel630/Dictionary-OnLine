@@ -171,29 +171,28 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public void shareCard(){
-//		client = new Client();
-//		wordCardInfo.setSendUser(myuserInfo.getUsername());
 		wordCardInfo.setChooseFlag(0);
 		PictureUtil pictureUtil=new PictureUtil();
-//		try {
-//			client.getOutputToServer().writeObject(wordCardInfo);
-//		} catch (IOException e1)
-//		{
-//			// TODO 自动生成的 catch 块
-//			e1.printStackTrace();
-//		}
-//		try {
-//			Boolean flag = client.getInputFromServer().readBoolean();
-//            if(flag == true){
-//            	JOptionPane.showMessageDialog(null, "发送成功!");
-//            }
-//            else{
-//            	JOptionPane.showMessageDialog(null, "发送失败！请确保对方在线！");
-//            }
-//		} catch (IOException e) {
-//			// TODO 自动生成的 catch 块
-//			e.printStackTrace();
-//		}
+		client=new Client();
+		try {
+			client.getOutputToServer().writeObject(wordCardInfo);
+		} catch (IOException e1)
+		{
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
+		try {
+			Boolean flag = client.getInputFromServer().readBoolean();
+            if(flag == true){
+            	JOptionPane.showMessageDialog(null, "发送成功!");
+            }
+            else{
+            	JOptionPane.showMessageDialog(null, "发送失败！请确保对方在线！");
+            }
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	};
 	
 	public  void setCountLike(int baidu,int youdao,int bing){

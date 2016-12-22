@@ -57,5 +57,13 @@ public class WordCardInfo implements java.io.Serializable{
 	public void setChooseFlag(int chooseFlag) {
 		ChooseFlag = chooseFlag;
 	}
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
 	
 }

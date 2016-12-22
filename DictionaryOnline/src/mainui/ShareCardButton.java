@@ -40,25 +40,26 @@ public class ShareCardButton extends JButton implements ActionListener{
             this.setSize(400, 200);
             this.setVisible(true);
             this.setTitle("分享卡片");
+            try {
+            	   DataFactory.getDataService().wordCardInfo.setSendUser(DataFactory.getDataService().myuserInfo.getUsername());
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
             this.setLocationRelativeTo(null);
             ensureChange.addActionListener(this);
         }
-
+        
         public String getReciveUser(){
             return username.getText();
         }
 
-        public JButton getEnsureChange(){
-            return ensureChange;
-        }
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO 自动生成的方法存根
-			//DataFactory.getDataService().wordCardInfo.setSendUser(getSendUser());
 			if(e.getSource() == ensureChange){
 				DataFactory.getDataService().wordCardInfo.setReceiveUser(getReciveUser());
 				DataFactory.getDataService().shareCard();
+//				System.out.println("hahah");
 			}
 		}
     }

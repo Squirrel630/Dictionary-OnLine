@@ -15,8 +15,20 @@ import po.WordCardInfo;
 import util.DataFactory;
 
 public class PictureUtil {
-	
-	private WordCardInfo wordCardInfo;
+	private final int sendLoc_X=350;
+	private final int sendLoc_Y=50;
+	private final int TransLoc_X1=30;
+	private final int TransLoc_Y1=120;
+	private final int TransLoc_X2=30;
+	private final int TransLoc_Y2=240;
+	private final int TransLoc_X3=30;
+	private final int TransLoc_Y3=360;
+	private final int rectWidth=700;
+	private final int rectHeight=500;
+	private final int transWidth=650;
+	private final int transHeight=100;
+	private Graphics2D g2;
+	private WordCardInfo wordCardInfo=new WordCardInfo();
 	
 	private void setWordCardInfo(){
 		this.wordCardInfo.setSendUser(DataFactory.getDataService().wordCardInfo.getSendUser());
@@ -24,30 +36,38 @@ public class PictureUtil {
 		this.wordCardInfo.setBaiduTrans(DataFactory.getDataService().wordCardInfo.getBaiduTrans());
 		this.wordCardInfo.setYoudaoTrans(DataFactory.getDataService().wordCardInfo.getYoudaoTrans());
 		this.wordCardInfo.setBingTrans(DataFactory.getDataService().wordCardInfo.getBingTrans());
+//		this.wordCardInfo.setChooseFlag(chooseFlag);
 	}
 	
+	private void drawPic(){
+        String sendfrom=wordCardInfo.getSendUser();
+        sendfrom="send from: "+sendfrom;
+		g2.drawString(sendfrom, sendLoc_X,sendLoc_Y);   
+		g2.drawRect(20, TransLoc_Y1-10,transWidth ,transHeight);
+		g2.drawRect(20, TransLoc_Y2-10, transWidth, transHeight);
+		g2.drawRect(20, TransLoc_Y3-10, transWidth, transHeight);
+		g2.drawString("Baidu:", TransLoc_X1, TransLoc_Y1);
+		g2.drawString(wordCardInfo.getBaiduTrans(), TransLoc_X1, TransLoc_Y1+10);
+		g2.drawString("Youdao:", TransLoc_X2, TransLoc_Y2);
+		g2.drawString(wordCardInfo.getYoudaoTrans(), TransLoc_X2, TransLoc_Y2+10);
+		g2.drawString("Bing:", TransLoc_X3, TransLoc_Y3);
+		g2.drawString(wordCardInfo.getBingTrans(), TransLoc_X3, TransLoc_Y3+10);		
+	}
 	public PictureUtil(){
-		int width = 100;   
-        int height = 100;   
-//        String s = "ÄãºÃ";   
-           
+		setWordCardInfo();
+		
         File file = new File("C:/Users/lsn/Desktop/Dic/DictionaryOnline/image/image.jpg");   
            
-        Font font = new Font("Serif", Font.BOLD, 10);   
-        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);   
-        Graphics2D g2 = (Graphics2D)bi.getGraphics();   
+        Font font = new Font("Serif", Font.BOLD, 60);   
+        BufferedImage bi = new BufferedImage(rectWidth, rectHeight, BufferedImage.TYPE_INT_RGB);   
+        g2 = (Graphics2D)bi.getGraphics();   
         g2.setBackground(Color.WHITE);   
-        g2.clearRect(0, 0, width, height);   
+        g2.clearRect(0, 0, rectWidth, rectHeight);   
         g2.setPaint(Color.RED);   
-           
+        
+        DataFactory.getDataService().wordCardInfo.setImage(bi);
         FontRenderContext context = g2.getFontRenderContext();   
-        Rectangle2D bounds = font.getStringBounds("send from: "+wordCardInfo.getSendUser(), context);   
-        double x = (width - bounds.getWidth()) / 2;   
-        double y = (height - bounds.getHeight()) / 2;   
-        double ascent = -bounds.getY();   
-        double baseY = y + ascent;   
-           
-        g2.drawString("send from: "+wordCardInfo.getSendUser(), (int)x, (int)baseY);   
+        drawPic();
            
         try {
 			ImageIO.write(bi, "jpg", file);

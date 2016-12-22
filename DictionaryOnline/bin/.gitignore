@@ -1,10 +1,4 @@
-/mainui/
-/message/
-/po/
-/runner/
-/util/
-/web/
-/config/
 /Client/
+/mainui/
 /data/
-/dataservice/
+/po/
