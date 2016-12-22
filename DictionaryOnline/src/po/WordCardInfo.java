@@ -5,11 +5,16 @@ import java.awt.image.BufferedImage;
 public class WordCardInfo implements java.io.Serializable{
 	private String sendUser;
 	private String ReceiveUser;
+	
 	private String baiduTrans;
 	private String youdaoTrans;
 	private String bingTrans;
+	private byte[] pic;
 	private int ChooseFlag;
-	private BufferedImage image;
+	
+	private String wordname;
+	private String PictureName;
+	private transient BufferedImage image;
 	
 	public WordCardInfo() {
 		// TODO 自动生成的构造函数存根
@@ -19,6 +24,7 @@ public class WordCardInfo implements java.io.Serializable{
 		youdaoTrans="";
 		bingTrans="";
 		ChooseFlag=-1;
+		image=new BufferedImage(700, 500, BufferedImage.TYPE_INT_RGB);
 	}
 
 	public String getSendUser() {
@@ -64,6 +70,30 @@ public class WordCardInfo implements java.io.Serializable{
 
 	public void setImage(BufferedImage image) {
 		this.image = image;
+	}
+
+	public String getPictureName() {
+		return PictureName;
+	}
+
+	public void setPictureName(String pictureName) {
+		PictureName = pictureName;
+	}
+
+	public String getWordname() {
+		return wordname;
+	}
+
+	public void setWordname(String wordname) {
+		this.wordname = wordname;
+	}
+
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
 	}
 	
 }

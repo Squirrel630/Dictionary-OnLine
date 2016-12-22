@@ -171,10 +171,21 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public void shareCard(){
+		Client client=new Client();
 		wordCardInfo.setChooseFlag(0);
 		PictureUtil pictureUtil=new PictureUtil();
-		client=new Client();
+//		wordCardInfo.setWordname(word);
 		try {
+			wordCardInfo.setPictureName((wordCardInfo.getSendUser()+"_"+wordCardInfo.getReceiveUser()+"_"+wordCardInfo.getWordname()));
+			System.out.println((wordCardInfo.getSendUser()+"_"+wordCardInfo.getReceiveUser()+"_"+wordCardInfo.getWordname()));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+//		client=new Client();
+		try {
+			if(wordCardInfo.getImage()==null){
+				System.out.println("BUG!");
+			}
 			client.getOutputToServer().writeObject(wordCardInfo);
 		} catch (IOException e1)
 		{

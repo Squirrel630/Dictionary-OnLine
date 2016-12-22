@@ -52,7 +52,7 @@ public class QueryButton extends JButton implements ActionListener{
 		} 
 		else {
 			String word = (String) UIFactory.getWordInputFieldInstance().getWord();
-			
+			DataFactory.getDataService().wordCardInfo.setWordname(word);
 			int error_flag=0;
 			for(int i=0;i<word.length();i++){
 				char c=word.charAt(i);

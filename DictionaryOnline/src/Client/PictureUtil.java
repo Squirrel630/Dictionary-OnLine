@@ -6,8 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.Socket;
 
 import javax.imageio.ImageIO;
 
@@ -65,15 +69,41 @@ public class PictureUtil {
         g2.clearRect(0, 0, rectWidth, rectHeight);   
         g2.setPaint(Color.RED);   
         
-        DataFactory.getDataService().wordCardInfo.setImage(bi);
+        
+      
         FontRenderContext context = g2.getFontRenderContext();   
         drawPic();
-           
         try {
 			ImageIO.write(bi, "jpg", file);
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-		}    
+		}  
+		int length = 0;
+		byte[] sendBytes = null;
+//		Socket socket = null;
+//DataOutputStream dos = null;
+		FileInputStream fis = null;
+//        File file = new File("C:/Users/lsn/Desktop/Dic/DictionaryOnline/image/image.jpg");
+        try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+        sendBytes = new byte[1024];
+        try {
+			fis.read(sendBytes, 0, sendBytes.length);
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+        DataFactory.getDataService().wordCardInfo.setPic(sendBytes);
+//        while ((length = fis.read(sendBytes, 0, sendBytes.length)) > 0) {
+//            dos.write(sendBytes, 0, length);
+//            dos.flush();
+//        }
+        DataFactory.getDataService().wordCardInfo.setImage(bi);
+  
 	}
 }
