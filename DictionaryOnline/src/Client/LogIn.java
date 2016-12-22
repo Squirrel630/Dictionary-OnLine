@@ -111,6 +111,7 @@ public class LogIn extends JFrame{
                 boolean a = client.getInputFromServer().readBoolean();
                 flag = a;
                 if(flag == true){
+                	DataFactory.getDataService().loginFlag=1;
                 	JOptionPane.showMessageDialog(null, "µÇÂ½³É¹¦!");
                 }
                 System.out.println(a);

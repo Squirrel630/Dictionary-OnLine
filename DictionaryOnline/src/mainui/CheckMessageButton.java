@@ -22,7 +22,7 @@ public class CheckMessageButton  extends JButton implements ActionListener{
 		public CheckMessageButton() {
 			setBounds(LoginButtonConfig.LOC_X4-20,LoginButtonConfig.LOC_Y4,LoginButtonConfig.WIDTH+20,LoginButtonConfig.HEIGHT);
 			setText("Message");
-			setToolTipText("Show the online users!");
+			setToolTipText("check your message!");
 			addActionListener(this);
 		}
 
@@ -37,18 +37,16 @@ public class CheckMessageButton  extends JButton implements ActionListener{
 	    	
 	        public MessageUI() {
 	        	wordCardInfo=DataFactory.getDataService().wordCardInfo;
-	        	this.add(new JLabel("send from: "+wordCardInfo.getSendUser()));
-	            this.add(new JLabel("Baidu_Translation:"));
-	            this.add(new JLabel(wordCardInfo.getBaiduTrans()));
-	            this.add(new JLabel("Youdao_Translation:"));
-	            this.add(new JLabel(wordCardInfo.getYoudaoTrans()));
-	            this.add(new JLabel("Bing_Translation:"));
-	            this.add(new JLabel(wordCardInfo.getBingTrans()));
+//	        	this.add(new JLabel("send from: "+wordCardInfo.getSendUser()));
+//	            this.add(new JLabel("Baidu_Translation:"));
+//	            this.add(new JLabel(wordCardInfo.getBaiduTrans()));
+//	            this.add(new JLabel("Youdao_Translation:"));
+//	            this.add(new JLabel(wordCardInfo.getYoudaoTrans()));
+//	            this.add(new JLabel("Bing_Translation:"));
+//	            this.add(new JLabel(wordCardInfo.getBingTrans()));
 	            this.setSize(400, 600);
 	            this.setVisible(true);
 	            this.setTitle("·ÖÏí¿¨Æ¬");
-//	            this.setLocationRelativeTo(null);
-//	            ensureChange.addActionListener(this);
 	        }
 	    }
 }

@@ -1,5 +1,7 @@
 package po;
 
+import java.awt.image.BufferedImage;
+
 public class WordCardInfo implements java.io.Serializable{
 	private String sendUser;
 	private String ReceiveUser;
@@ -7,6 +9,7 @@ public class WordCardInfo implements java.io.Serializable{
 	private String youdaoTrans;
 	private String bingTrans;
 	private int ChooseFlag;
+	private BufferedImage image;
 	
 	public WordCardInfo() {
 		// TODO 自动生成的构造函数存根

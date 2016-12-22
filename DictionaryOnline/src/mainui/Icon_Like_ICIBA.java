@@ -32,7 +32,8 @@ public class Icon_Like_ICIBA  extends JButton implements ActionListener{
 	}
 	
 	public void updateConfig(){
-		this.setEnabled(false);
+//		this.setEnabled(false);
+		removeActionListener(this);
 		bing_config.initConfig(DataFactory.getDataService().choose.getBing_rank());
 		setLayout(null);
 		setBounds(bing_config.LOC_Like_X, bing_config.LOC_Like_Y, bing_config.Like_WIDTH+10, bing_config.Like_HEIGHT+10);

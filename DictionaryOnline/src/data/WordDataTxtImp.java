@@ -6,6 +6,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 import Client.Client;
+import Client.PictureUtil;
 import dataservice.WordDataService;
 import po.ChooseInfo;
 import po.UserInfo;
@@ -125,8 +126,8 @@ public class WordDataTxtImp extends WordDataService{
 					choose.setBing_rank(2);
 					choose.setYoudao_rank(1);
 				}
+				}
 			}
-		}
 		}
 		
 		//设置显示
@@ -142,16 +143,18 @@ public class WordDataTxtImp extends WordDataService{
 		UIFactory.getIcon_Like_ICIBA().setVisible(choose.getBing());
 		UIFactory.getIcon_ICIBA().setVisible(choose.getBing());
 		
-		System.out.println(choose.getBaidu_rank()+" "+choose.getBing_rank()+"  "+choose.getYoudao_rank());
-		UIFactory.getIcon_Baidu().updateConfig();
-		UIFactory.getIcon_ICIBA().updateConfig();
-		UIFactory.getIcon_Youdao().updateConfig();
-		UIFactory.getIcon_Like_Baidu().updateConfig();
-		UIFactory.getIcon_Like_ICIBA().updateConfig();
-		UIFactory.getIcon_Like_Youdao().updateConfig();
-		UIFactory.getWordContentInstance().updateConfig();
-		UIFactory.getWordContent_ICIBA().updateConfig();
-		UIFactory.getWordContent_Youdao().updateConfig();;
+		if(DataFactory.getDataService().loginFlag==1){
+			System.out.println(choose.getBaidu_rank()+" "+choose.getBing_rank()+"  "+choose.getYoudao_rank());
+			UIFactory.getIcon_Baidu().updateConfig();
+			UIFactory.getIcon_ICIBA().updateConfig();
+			UIFactory.getIcon_Youdao().updateConfig();
+			UIFactory.getIcon_Like_Baidu().updateConfig();
+			UIFactory.getIcon_Like_ICIBA().updateConfig();
+			UIFactory.getIcon_Like_Youdao().updateConfig();
+			UIFactory.getWordContentInstance().updateConfig();
+			UIFactory.getWordContent_ICIBA().updateConfig();
+			UIFactory.getWordContent_Youdao().updateConfig();
+		}
 	}
 
 	@Override
@@ -168,30 +171,29 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public void shareCard(){
-//		wordCardInfo.setSendUser(wordCardInfo.getUsername());
-//		String receiveuser="";
-		client = new Client();
-		wordCardInfo.setSendUser(myuserInfo.getUsername());
+//		client = new Client();
+//		wordCardInfo.setSendUser(myuserInfo.getUsername());
 		wordCardInfo.setChooseFlag(0);
-		try {
-			client.getOutputToServer().writeObject(wordCardInfo);
-		} catch (IOException e1) {
-			// TODO 自动生成的 catch 块
-			e1.printStackTrace();
-		}
-     //   String message="";
-		try {
-			Boolean flag = client.getInputFromServer().readBoolean();
-            if(flag == true){
-            	JOptionPane.showMessageDialog(null, "发送成功!");
-            }
-            else{
-            	JOptionPane.showMessageDialog(null, "发送失败！请确保对方在线！");
-            }
-		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+		PictureUtil pictureUtil=new PictureUtil();
+//		try {
+//			client.getOutputToServer().writeObject(wordCardInfo);
+//		} catch (IOException e1)
+//		{
+//			// TODO 自动生成的 catch 块
+//			e1.printStackTrace();
+//		}
+//		try {
+//			Boolean flag = client.getInputFromServer().readBoolean();
+//            if(flag == true){
+//            	JOptionPane.showMessageDialog(null, "发送成功!");
+//            }
+//            else{
+//            	JOptionPane.showMessageDialog(null, "发送失败！请确保对方在线！");
+//            }
+//		} catch (IOException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
 	};
 	
 	public  void setCountLike(int baidu,int youdao,int bing){
@@ -218,7 +220,6 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public void checkmessage(){
-//    	getUser();
 		System.out.println(myuserInfo.getUsername());
     	wordCardInfo.setReceiveUser(myuserInfo.getUsername());
     	wordCardInfo.setChooseFlag(1);
@@ -226,22 +227,18 @@ public class WordDataTxtImp extends WordDataService{
         try {
 			client.getOutputToServer().writeObject(wordCardInfo);
 		} catch (IOException e1) {
-			// TODO 自动生成的 catch 块
 			e1.printStackTrace();
 		}
         String message="";
 		try {
 			message = client.getInputFromServer().readUTF();
 		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-//        flag = a;
         if(message!=""){
         	String[] getmeaasge=message.split("~");
         	wordCardInfo.setSendUser(getmeaasge[0]);
         	wordCardInfo.setReceiveUser(getmeaasge[1]);
-        	//myuserInfo.wordCardInfo
         	int i=2;
         	while(i<getmeaasge.length){
         	String temp=getmeaasge[i];

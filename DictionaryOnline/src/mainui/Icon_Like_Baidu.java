@@ -32,7 +32,8 @@ public class Icon_Like_Baidu  extends JButton implements ActionListener{
 	}
 
 	public void updateConfig(){
-		this.setEnabled(false);
+//		this.setEnabled(false);
+		removeActionListener(this);
 		baidu_config.initConfig(DataFactory.getDataService().choose.getBaidu_rank());
 		setLayout(null);
 		setBounds(baidu_config.LOC_Like_X, baidu_config.LOC_Like_Y, baidu_config.Like_WIDTH+10, baidu_config.Like_HEIGHT+10);

@@ -29,6 +29,8 @@ public abstract class  WordDataService{
 	protected Client client;
 	public static WordCardInfo wordCardInfo=new WordCardInfo();
 	public static WordCardInfo myMessage=new WordCardInfo();
+	public static int loginFlag=0;
+	
 
 	/**
 	 * The initial of dictionary
