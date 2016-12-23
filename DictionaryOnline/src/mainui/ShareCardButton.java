@@ -27,7 +27,7 @@ public class ShareCardButton extends JButton implements ActionListener{
 	}
 
     class ShareCardUI extends JFrame implements ActionListener{
-        public JButton ensureChange=new JButton("È·¶¨");
+        public JButton ensureChange=new JButton("·¢ËÍ");
         public JTextField  username = new JTextField(16);
         public ShareCardUI() {
             this.setLayout(new FlowLayout());

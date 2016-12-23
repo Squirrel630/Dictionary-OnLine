@@ -1,6 +1,8 @@
 package data;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JOptionPane;
@@ -230,35 +232,40 @@ public class WordDataTxtImp extends WordDataService{
 	};
 	
 	public void checkmessage(){
-		System.out.println(myuserInfo.getUsername());
+		//System.out.println(myuserInfo.getUsername());
     	wordCardInfo.setReceiveUser(myuserInfo.getUsername());
     	wordCardInfo.setChooseFlag(1);
-       	client = new Client();
+       	client = new Client(1);
         try {
 			client.getOutputToServer().writeObject(wordCardInfo);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-        String message="";
+        ArrayList<BufferedImage> messages = new ArrayList();
 		try {
-			message = client.getInputFromServer().readUTF();
+			try {
+				messages = (ArrayList<BufferedImage>)client.getOjFromServer().readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        if(message!=""){
-        	String[] getmeaasge=message.split("~");
-        	wordCardInfo.setSendUser(getmeaasge[0]);
-        	wordCardInfo.setReceiveUser(getmeaasge[1]);
-        	int i=2;
-        	while(i<getmeaasge.length){
-        	String temp=getmeaasge[i];
-        	String[] trans = temp.split("!");
-        	myMessage.setBaiduTrans(trans[0]);
-        	myMessage.setYoudaoTrans(trans[1]);
-        	myMessage.setBingTrans(trans[2]);
-        	i++;
-        	}
-        }
+//        if(message!=""){
+//        	String[] getmeaasge=message.split("~");
+//        	wordCardInfo.setSendUser(getmeaasge[0]);
+//        	wordCardInfo.setReceiveUser(getmeaasge[1]);
+//        	int i=2;
+//        	while(i<getmeaasge.length){
+//        	String temp=getmeaasge[i];
+//        	String[] trans = temp.split("!");
+//        	myMessage.setBaiduTrans(trans[0]);
+//        	myMessage.setYoudaoTrans(trans[1]);
+//        	myMessage.setBingTrans(trans[2]);
+//        	i++;
+//        	}
+//        }
 	}
 	
 	public int getBaiduFromServer(){
