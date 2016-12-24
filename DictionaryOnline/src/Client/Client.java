@@ -21,7 +21,7 @@ public class Client{
 	//连接到服务器
 	public void connectToServer(){
 		try{
-			socket=new Socket("114.212.130.54",123);	
+			socket=new Socket("localhost",123);	
 			inputFromServer=new DataInputStream(socket.getInputStream());	
 			outputToServer=new ObjectOutputStream(socket.getOutputStream());
 			
@@ -31,31 +31,31 @@ public class Client{
 		}
 	}
 	
-	public Client(int i) {
-		// TODO 自动生成的构造函数存根
-		connectToServer(i);
-	}
-	
-	public void connectToServer(int i){
-		try{
-			socket=new Socket("localhost",123);		
-			outputToServer=new ObjectOutputStream(socket.getOutputStream());
-			ojFromServer=new ObjectInputStream(socket.getInputStream());
-			
-		}
-		catch(IOException ex){
-			System.err.println(ex);
-		}
-	}
+//	public Client(int i) {
+//		// TODO 自动生成的构造函数存根
+//		connectToServer(i);
+//	}
+//	
+//	public void connectToServer(int i){
+//		try{
+//			socket=new Socket("localhost",123);		
+//			outputToServer=new ObjectOutputStream(socket.getOutputStream());
+//			ojFromServer=new ObjectInputStream(socket.getInputStream());
+//			
+//		}
+//		catch(IOException ex){
+//			System.err.println(ex);
+//		}
+//	}
 	
 
 	public DataInputStream getInputFromServer(){
 		return inputFromServer;
 	}
 	
-	public ObjectInputStream getOjFromServer(){
-		return ojFromServer;
-	}
+//	public ObjectInputStream getOjFromServer(){
+//		return ojFromServer;
+//	}
 	
 	public ObjectOutputStream getOutputToServer(){
 		return outputToServer;

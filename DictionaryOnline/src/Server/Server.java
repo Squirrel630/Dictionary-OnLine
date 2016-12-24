@@ -1,11 +1,13 @@
 package Server;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.*;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import po.ChooseInfo;
 import po.UserInfo;
@@ -15,8 +17,10 @@ import po.WordCardInfo;
  * Created by DF on 2016/12/18.
  */
 public class Server {
+	Socket socket;
     private ObjectInputStream inputFromClient;
     private DataOutputStream outputToClient;
+    private ObjectOutputStream ojToClient;
     String queryString = "";
     
     Connection connection;
@@ -41,12 +45,11 @@ public class Server {
             while (true){
                 flag = false;
 
-                Socket socket = serverSocket.accept();
+                socket = serverSocket.accept();
 
-                System.out.println("123");
+                System.out.println("1234");
 
                 inputFromClient = new ObjectInputStream(socket.getInputStream());
-                outputToClient = new DataOutputStream(socket.getOutputStream());
 
                 Object oj = inputFromClient.readObject();
                 
@@ -56,9 +59,11 @@ public class Server {
                 int clientflag2 = mark.indexOf("po.ChooseInfo");
                 int clientflag3 = mark.indexOf("po.WordCardInfo");
                 if(clientflag1!=-1){
+                    outputToClient = new DataOutputStream(socket.getOutputStream());
                 	haddldeLogin(oj);
                 }
                 else if(clientflag2!=-1){
+                	outputToClient = new DataOutputStream(socket.getOutputStream());
                 	haddldeLike(oj);
                 }
                 else if(clientflag3!=-1){
@@ -72,8 +77,7 @@ public class Server {
             ex.printStackTrace();
         }
     }
-
-    
+        
     private void haddldeLogin(Object oj) throws IOException{
     	UserInfo user = (UserInfo) oj;
 
@@ -209,24 +213,50 @@ public class Server {
     private void haddldeMessage(Object oj) throws IOException{
     	WordCardInfo card = (WordCardInfo) oj;
     	if(card.getChooseFlag() == 1){
+    		//ojToClient = new ObjectOutputStream(socket.getOutputStream());
+    		outputToClient = new DataOutputStream(socket.getOutputStream());
     	try {
     		queryString = "select * from message where accept = '" +card.getReceiveUser() + "';";
     		resultSet = statement.executeQuery(queryString);
-    		String result = "";
-    		if(resultSet.next()){
-    			result = result + resultSet.getString(1) + "~";
-    			result = result + resultSet.getString(2) + "~";
-    			result = result + resultSet.getString(3);
+//            ArrayList<BufferedImage> images = new ArrayList();
+//    		if(resultSet.next()){
+//                BufferedImage image = ImageIO.read(new File(resultSet.getString(3)));
+//                images.add(image);
+//    		}
+//            ojToClient.writeObject(images);
+            //outputToClient.w
+    		while(resultSet.next()){
+    		    BufferedImage image = ImageIO.read(new File(resultSet.getString(3)));
+    		    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    		    ImageIO.write(image, "jpg", out);
+    		    byte[] b = out.toByteArray();
+    		    outputToClient.write(b);
+//    			byte[] sendBytes = null;
+//    			FileInputStream fis = null;
+//    	        try {
+//    				fis = new FileInputStream(file);
+//    			} catch (FileNotFoundException e) {
+//    				// TODO 自动生成的 catch 块
+//    				e.printStackTrace();
+//    			}
+//    	        try {
+//    				sendBytes = new byte[fis.available()];
+//    				fis.read( sendBytes );
+//    				fis.close();
+//    			} catch (IOException e1) {
+//    				// TODO Auto-generated catch block
+//    				e1.printStackTrace();
+//    			}
+//    	        outputToClient.write(sendBytes);
     		}
-            outputToClient.writeUTF(result);
+    		outputToClient.write(0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	}
     	else if(card.getChooseFlag() == 0){
-    		String dsc = card.getBaiduTrans()+"!" + card.getYoudaoTrans() + "!" + card.getBingTrans();
-    		System.out.println(dsc.length() + dsc);
+    		outputToClient = new DataOutputStream(socket.getOutputStream());
     		queryString = "insert into message(send,accept,description) ";
     		queryString = queryString+"values (?,?,?);";
     		System.out.println(queryString);
@@ -234,7 +264,15 @@ public class Server {
     			PreparedStatement preparedStatement = connection.prepareStatement(queryString);
     			preparedStatement.setString(1,card.getSendUser());
     			preparedStatement.setString(2,card.getReceiveUser());
-    			preparedStatement.setString(3,dsc);
+    			String path = "E:/MessageCards/" + card.getPictureName() + ".jpg";
+    			preparedStatement.setString(3,path);
+    			File file = new File(path);
+    			BufferedImage bi = new BufferedImage(700,500,BufferedImage.TYPE_INT_RGB); 
+    	        FileOutputStream outStream = new FileOutputStream(file);   
+    	        byte[] temp = card.getPic();
+    	        outStream.write(temp);   
+    	        outStream.flush();
+    	        outStream.close();
     			preparedStatement.execute();
 				outputToClient.writeBoolean(true);
 			} catch (SQLException e) {

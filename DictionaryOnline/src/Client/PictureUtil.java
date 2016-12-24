@@ -22,11 +22,11 @@ import util.DataFactory;
 public class PictureUtil {
 	private final int sendLoc_X=300;
 	private final int sendLoc_Y=10;
-	private final int TransLoc_X1=30;
+	private final int TransLoc_X1=50;
 	private final int TransLoc_Y1=120;
-	private final int TransLoc_X2=30;
+	private final int TransLoc_X2=50;
 	private final int TransLoc_Y2=240;
-	private final int TransLoc_X3=30;
+	private final int TransLoc_X3=50;
 	private final int TransLoc_Y3=360;
 	private final int rectWidth=700;
 	private final int rectHeight=500;

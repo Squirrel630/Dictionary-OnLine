@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import config.LoginButtonConfig;
 import po.WordCardInfo;
+import util.DataFactory;
 
 public class CheckMessageButton  extends JButton implements ActionListener{
 
@@ -23,11 +24,12 @@ public class CheckMessageButton  extends JButton implements ActionListener{
 			setToolTipText("check your message!");
 			addActionListener(this);
 		}
-
+		private static int image_num=0;
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
+			DataFactory.getDataService().checkmessage();
 			MessageUI messageUI=new MessageUI();
-//			DataFactory.getDataService().checkmessage();
 		}
 		
 	    class MessageUI extends JFrame {
@@ -49,8 +51,8 @@ public class CheckMessageButton  extends JButton implements ActionListener{
 	            left.setBounds(320, 600, 50, 50);
 	            this.add(right);
 	            right.setBounds(420, 600, 50, 50);
-	            img=new JLabel(new ImageIcon("image.jpg"));
-	            
+	            img=new JLabel(new ImageIcon("DataFactory.getDataService().images.get(image_num)"));
+	            img.setIcon(new ImageIcon(DataFactory.getDataService().images.get(image_num)));
 	    		img.setBounds(25, 60, 700, 500);
 	    		add(img);
 	            
@@ -72,7 +74,13 @@ public class CheckMessageButton  extends JButton implements ActionListener{
 	        }
 	        
 	        private void updateImg(int i){
-	        	img.setIcon(new ImageIcon("Icon_Baidu.png"));
+//	        	img.setIcon(new ImageIcon("Icon_Baidu.png"));
+	        	image_num=image_num+i;
+	        	if(image_num<0)image_num=0;
+//	        	System.out.println(image_num+"hahha"+DataFactory.getDataService().images.size());
+	        	if(image_num==(DataFactory.getDataService().images.size()))
+	        		image_num=image_num-1;
+	        	img.setIcon(new ImageIcon(DataFactory.getDataService().images.get(image_num)));
 	        }
 	    }
 }

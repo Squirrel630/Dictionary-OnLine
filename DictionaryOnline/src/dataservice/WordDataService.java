@@ -1,17 +1,17 @@
 package dataservice;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
 import Client.Client;
-import Client.LogIn;
 import data.BKTree;
 import data.LevensteinDistance;
 import data.MetricSpace;
 import data.Trie;
-import mainui.ChooseBox;
 import po.ChooseInfo;
 import po.UserInfo;
 import po.WordCardInfo;
@@ -83,5 +83,5 @@ public abstract class  WordDataService{
 	public abstract int getBaiduFromServer();
 	public abstract int getBingFromServer();
 	public abstract int getYoudaoFromServer();
-	
+	public static ArrayList<BufferedImage> images = new ArrayList();
 }
